@@ -1,104 +1,924 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shakira Bacon</title>
+  <meta charset="UTF-8" />
+  <title>Shakira Bacon – Rainbow-Powered Digital Marketing</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
   <style>
-    body {
-      background: #fff0f5;
-      font-family: 'Arial', sans-serif;
-      text-align: center;
-      padding: 30px 20px;
-      color: #b30000;
-      margin: 0;
-    }
-    h1 {
-      font-size: 3.5em;
-      margin-bottom: 0.2em;
-      font-family: 'Comic Sans MS', cursive, sans-serif;
-      line-height: 1.1;
-    }
-    h2 {
-      font-size: 1.8em;
-      margin-top: 0;
-      color: #ff6600;
-    }
-    img {
-      width: 80%;
-      max-width: 300px;
-      border-radius: 50%;
-      margin: 20px 0;
-      border: 5px dashed #ffcc00;
-    }
-    p {
-      font-size: 1.2em;
-      line-height: 1.5;
-      margin: 10px 0;
-    }
-    .dance {
-      animation: shake 1s infinite;
-      display: inline-block;
-    }
-    footer {
-      margin-top: 40px;
-      font-size: 0.9em;
-      color: #4d0000;
-      line-height: 1.5;
-      border-top: 2px solid #ffcccc;
-      padding-top: 15px;
-    }
-    footer a {
-      color: #b30000;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    footer .funny {
-      color: #ff6600;
-      font-style: italic;
-    }
-    @keyframes shake {
-      0% { transform: rotate(0deg); }
-      25% { transform: rotate(5deg); }
-      50% { transform: rotate(-5deg); }
-      75% { transform: rotate(5deg); }
-      100% { transform: rotate(0deg); }
+    :root {
+      --text-main: #111827;
+      --text-muted: #4b5563;
+      --radius-xl: 1.6rem;
+      --shadow-soft: 0 22px 60px rgba(15, 23, 42, 0.18);
+      --max-width: 1120px;
     }
 
-    /* Mobile responsive tweaks */
-    @media (max-width: 480px) {
-      h1 {
-        font-size: 2.5em;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text-main);
+      background:
+        radial-gradient(circle at 0% 0%, rgba(255,0,128,0.18), transparent 55%),
+        radial-gradient(circle at 100% 100%, rgba(55,118,255,0.18), transparent 55%),
+        linear-gradient(135deg,
+          #0f172a 0%,
+          #020617 40%,
+          #020617 60%,
+          #020617 100%);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+      padding: 2.5rem 1.25rem;
+    }
+
+    .shell {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      background: radial-gradient(circle at top left, rgba(255,255,255,0.18), transparent 55%),
+                  radial-gradient(circle at bottom right, rgba(255,255,255,0.12), transparent 55%),
+                  rgba(15,23,42,0.94);
+      border-radius: 2rem;
+      border: 1px solid rgba(148,163,184,0.4);
+      box-shadow: var(--shadow-soft);
+      padding: 1.75rem 1.75rem 2.2rem;
+      backdrop-filter: blur(20px);
+      display: flex;
+      flex-direction: column;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ABSTRACT ORBS (subtle, behind card) */
+    .orb {
+      position: fixed;
+      width: 420px;
+      height: 420px;
+      filter: blur(120px);
+      opacity: 0.4;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .orb.one { top: -80px; left: -40px; background: #ff4d8a; }
+    .orb.two { bottom: -120px; right: -40px; background: #38bdf8; }
+
+    /* HEADER */
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      margin-bottom: 2.4rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 1.1rem;
+    }
+
+    .brand-logo {
+      width: 72px;
+      height: 72px;
+      padding: 8px;
+      border-radius: 1.4rem;
+      background:
+        conic-gradient(from 160deg,
+          #f97316,
+          #ec4899,
+          #6366f1,
+          #22c55e,
+          #eab308,
+          #f97316);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 14px 40px rgba(15,23,42,0.45);
+    }
+
+    .brand-logo-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: 1.1rem;
+      background: #f9fafb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .brand-logo img {
+      max-width: 90%;
+      max-height: 90%;
+      display: block;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+    }
+
+    .brand-name {
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #e5e7eb;
+    }
+
+    .brand-sub {
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #9ca3af;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.9);
+      border: 1px solid rgba(148,163,184,0.6);
+      color: #e5e7eb;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 5px rgba(34,197,94,0.35);
+    }
+
+    .btn-outline {
+      padding: 0.45rem 1.1rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.8);
+      background: radial-gradient(circle at top left, rgba(248,250,252,0.14), rgba(15,23,42,0.95));
+      color: #e5e7eb;
+      font-size: 0.82rem;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      cursor: pointer;
+      transition: all 0.18s ease;
+      backdrop-filter: blur(16px);
+    }
+
+    .btn-outline span.icon {
+      font-size: 1rem;
+      transform: translateY(1px);
+    }
+
+    .btn-outline:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 30px rgba(15,23,42,0.75);
+      border-color: #f97316;
+    }
+
+    /* HERO */
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 2.4rem;
+      align-items: center;
+      margin-bottom: 3rem;
+    }
+
+    .hero-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.85);
+      border: 1px solid rgba(148,163,184,0.7);
+      color: #e5e7eb;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      margin-bottom: 1.1rem;
+    }
+
+    .hero-kicker span.tag {
+      padding: 0.15rem 0.55rem;
+      border-radius: 999px;
+      background: radial-gradient(circle at 0 0, #f97316, #ec4899);
+      font-weight: 600;
+      letter-spacing: 0.2em;
+    }
+
+    h1.hero-title {
+      font-size: clamp(2.3rem, 3.1vw + 1.3rem, 3.4rem);
+      line-height: 1.06;
+      letter-spacing: -0.04em;
+      margin-bottom: 0.9rem;
+      color: #f9fafb;
+    }
+
+    .hero-title span {
+      background: linear-gradient(120deg, #f97316, #ec4899, #6366f1);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 0.98rem;
+      max-width: 32rem;
+      color: #cbd5f5;
+      margin-bottom: 1.7rem;
+    }
+
+    .hero-subtitle strong {
+      color: #e5e7eb;
+      font-weight: 600;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-bottom: 1.1rem;
+    }
+
+    .btn-primary {
+      border-radius: 999px;
+      padding: 0.8rem 1.5rem;
+      border: none;
+      background: linear-gradient(135deg, #f97316, #ec4899, #6366f1);
+      color: #f9fafb;
+      font-size: 0.95rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      box-shadow: 0 18px 45px rgba(15,23,42,0.9);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn-primary span.icon {
+      font-size: 1.2rem;
+      transform: translateY(1px);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px) scale(1.01);
+      box-shadow: 0 24px 60px rgba(15,23,42,1);
+    }
+
+    .hero-note {
+      font-size: 0.8rem;
+      color: #9ca3af;
+    }
+
+    .hero-note strong {
+      color: #e5e7eb;
+    }
+
+    .hero-right {
+      position: relative;
+    }
+
+    .hero-card {
+      background: radial-gradient(circle at top left, rgba(248,250,252,0.18), rgba(15,23,42,0.96));
+      border-radius: var(--radius-xl);
+      padding: 1.5rem 1.5rem 1.35rem;
+      border: 1px solid rgba(148,163,184,0.7);
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(18px);
+      color: #e5e7eb;
+      font-size: 0.9rem;
+    }
+
+    .hero-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+
+    .hero-card-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .hero-chip {
+      font-size: 0.7rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.9);
+      border: 1px solid rgba(148,163,184,0.9);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #cbd5f5;
+    }
+
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .metric {
+      padding: 0.85rem 0.9rem;
+      border-radius: 1rem;
+      background: rgba(15,23,42,0.92);
+      border: 1px solid rgba(148,163,184,0.55);
+    }
+
+    .metric-label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #9ca3af;
+      margin-bottom: 0.25rem;
+    }
+
+    .metric-value {
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.15rem;
+    }
+
+    .metric-footnote {
+      font-size: 0.72rem;
+      color: #9ca3af;
+    }
+
+    .hero-list {
+      font-size: 0.8rem;
+      color: #cbd5f5;
+      list-style: none;
+      display: grid;
+      gap: 0.35rem;
+      margin-top: 0.4rem;
+    }
+
+    .hero-list li {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .hero-list span.badge {
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      background: linear-gradient(135deg,#f97316,#ec4899,#6366f1);
+      font-size: 0.62rem;
+      color: #f9fafb;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* SECTIONS */
+
+    .section {
+      margin-bottom: 2.7rem;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1.5rem;
+      margin-bottom: 1.4rem;
+      flex-wrap: wrap;
+    }
+
+    .section-kicker {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: #9ca3af;
+      margin-bottom: 0.2rem;
+    }
+
+    .section-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: #f9fafb;
+    }
+
+    .section-description {
+      font-size: 0.88rem;
+      color: #9ca3af;
+      max-width: 26rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.4rem;
+    }
+
+    .card {
+      background: radial-gradient(circle at top left, rgba(248,250,252,0.14), rgba(15,23,42,0.98));
+      border-radius: 1.3rem;
+      padding: 1.2rem 1.15rem 1.25rem;
+      border: 1px solid rgba(148,163,184,0.7);
+      box-shadow: 0 18px 40px rgba(15,23,42,0.8);
+      font-size: 0.9rem;
+      color: #e5e7eb;
+    }
+
+    .card-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #9ca3af;
+      margin-bottom: 0.3rem;
+    }
+
+    .card-title {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+
+    .card-body {
+      font-size: 0.84rem;
+      color: #cbd5f5;
+    }
+
+    /* CONTACT */
+
+    .contact-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 2rem;
+    }
+
+    .contact-highlight {
+      background: linear-gradient(135deg, #f97316, #ec4899, #6366f1);
+      border-radius: 1.4rem;
+      padding: 1.5rem 1.5rem 1.3rem;
+      box-shadow: 0 22px 55px rgba(15,23,42,0.95);
+      color: #0f172a;
+      font-size: 0.9rem;
+    }
+
+    .contact-highlight h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.4rem;
+      letter-spacing: -0.02em;
+    }
+
+    .contact-highlight p {
+      font-size: 0.88rem;
+      margin-bottom: 0.7rem;
+      color: #020617;
+    }
+
+    .contact-email {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.55rem 0.9rem;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.95);
+      color: #f9fafb;
+      font-size: 0.82rem;
+      font-weight: 500;
+      margin-bottom: 0.8rem;
+    }
+
+    .contact-email span.icon {
+      font-size: 1rem;
+    }
+
+    .contact-footnote {
+      font-size: 0.78rem;
+      color: #020617;
+      opacity: 0.85;
+    }
+
+    .contact-form {
+      border-radius: 1.4rem;
+      padding: 1.4rem 1.4rem 1.2rem;
+      border: 1px solid rgba(148,163,184,0.7);
+      background: radial-gradient(circle at top left, rgba(248,250,252,0.12), rgba(15,23,42,0.98));
+      font-size: 0.85rem;
+      color: #e5e7eb;
+    }
+
+    .contact-form p {
+      margin-bottom: 0.7rem;
+      color: #cbd5f5;
+    }
+
+    .fake-field {
+      padding: 0.65rem 0.8rem;
+      border-radius: 0.9rem;
+      border: 1px solid rgba(148,163,184,0.7);
+      background: rgba(15,23,42,0.9);
+      font-size: 0.8rem;
+      color: #e5e7eb;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      margin-bottom: 0.45rem;
+    }
+
+    .fake-field span.label {
+      color: #9ca3af;
+    }
+
+    .fake-field span.value {
+      color: #e5e7eb;
+    }
+
+    .fake-field span.chip {
+      padding: 0.15rem 0.55rem;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.9);
+      border: 1px solid rgba(148,163,184,0.9);
+      font-size: 0.72rem;
+      color: #e5e7eb;
+    }
+
+    .contact-hint {
+      font-size: 0.76rem;
+      color: #9ca3af;
+      margin-top: 0.2rem;
+    }
+
+    /* FOOTER */
+
+    footer {
+      margin-top: 1.5rem;
+      padding-top: 1.3rem;
+      border-top: 1px solid rgba(148,163,184,0.6);
+      font-size: 0.78rem;
+      color: #9ca3af;
+    }
+
+    .footer-main {
+      color: #e5e7eb;
+      margin-bottom: 0.35rem;
+    }
+
+    .footer-main strong {
+      font-weight: 600;
+    }
+
+    .footer-address {
+      margin-bottom: 0.2rem;
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 880px) {
+      .shell {
+        padding: 1.5rem 1.25rem 1.8rem;
       }
-      h2 {
-        font-size: 1.4em;
+      header {
+        flex-direction: column;
+        align-items: flex-start;
       }
-      p {
-        font-size: 1em;
+      .header-right {
+        justify-content: flex-start;
       }
-      img {
-        width: 90%;
-        max-width: 250px;
+      .hero {
+        grid-template-columns: minmax(0,1fr);
       }
-      body {
-        padding: 20px 10px;
+      .hero-right {
+        order: -1;
+      }
+      .grid-3 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .contact-layout {
+        grid-template-columns: minmax(0,1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .grid-3 {
+        grid-template-columns: minmax(0,1fr);
+      }
+      h1.hero-title {
+        font-size: 2.2rem;
       }
     }
   </style>
 </head>
 <body>
-  <h1>Shakira Bacon 🥓💃</h1>
-  <h2>Something Cool, Coming Soon...</h2>
-  <img src="https://i.imgur.com/WPBrI2F.jpeg" alt="Shakira Bacon">
-  <p class="dance">Shake it like bacon sizzling on a hot pan!</p>
-  <p>Follow me <a href="https://instagram.com/shakirabacon" target="_blank">@shakirabacon</a><br>The Only Thing That Makes You Wiggle 🔥💃🥓</p>
-  <p>Contact: <a href="mailto:sebastian@shakirabacon.com">sebastian@shakirabacon.com</a></p>
+  <!-- subtle background orbs -->
+  <div class="orb one"></div>
+  <div class="orb two"></div>
 
-  <footer>
-    <p><strong>Shakira Bacon UK Ltd. | Managed by Berma LLC dba NoGood</strong></p>
-    <p>Ground Floor, 30 Churchill Pl, London E14 5RE, UK</p>
-    <p>© 2025 Shakira Bacon UK Ltd. All rights reserved.</p>
-    <p class="funny">Professional-ish, but still deliciously ridiculous.</p>
-  </footer>
+  <div class="page">
+    <div class="shell">
+      <!-- HEADER -->
+      <header>
+        <div class="brand">
+          <div class="brand-logo">
+            <div class="brand-logo-inner">
+              <!-- Replace with your actual logo path -->
+              <img src="images/shakira-bacon-logo.png" alt="Shakira Bacon logo" />
+            </div>
+          </div>
+          <div class="brand-text">
+            <div class="brand-name">Shakira Bacon</div>
+            <div class="brand-sub">Sebastian Neaga</div>
+          </div>
+        </div>
+
+        <div class="header-right">
+          <div class="status-pill">
+            <span class="status-dot"></span>
+            <span>Founding client spots open</span>
+          </div>
+          <a class="btn-outline" href="mailto:sebastian@shakriabacon.com">
+            <span class="icon">✉️</span>
+            <span>sebastian@shakriabacon.com</span>
+          </a>
+        </div>
+      </header>
+
+      <!-- HERO -->
+      <section class="hero">
+        <div class="hero-left">
+          <div class="hero-kicker">
+            <span class="tag">Beta Studio</span>
+            <span>Professional-ish. Deliciously ridiculous.</span>
+          </div>
+          <h1 class="hero-title">
+            Digital marketing that’s<br />
+            <span>crispy, loud & actually effective.</span>
+          </h1>
+          <p class="hero-subtitle">
+            Shakira Bacon is a boutique digital marketing studio for brands that want
+            <strong>grown-up performance</strong> with <strong>main-character energy</strong> —
+            strategy, ads, and creative that convert without feeling corporate beige.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn-primary" href="mailto:sebastian@shakriabacon.com?subject=Let%E2%80%99s%20talk%20about%20my%20marketing">
+              <span class="icon">🔥</span>
+              <span>Request a consultation</span>
+            </a>
+            <a class="btn-outline" href="#contact">
+              <span class="icon">📈</span>
+              <span>Send your biggest marketing mess</span>
+            </a>
+          </div>
+
+          <p class="hero-note">
+            <strong>Currently:</strong> building core case studies, over-analysing your CTR,
+            and asking “but what if this was actually fun?” in every meeting.
+          </p>
+        </div>
+
+        <div class="hero-right">
+          <div class="hero-card">
+            <div class="hero-card-header">
+              <div class="hero-card-title">
+                <span>Campaign Snapshot · v0.1</span>
+              </div>
+              <span class="hero-chip">Rainbow Performance Mode</span>
+            </div>
+
+            <div class="hero-metrics">
+              <div class="metric">
+                <div class="metric-label">Click-through glow-up</div>
+                <div class="metric-value">+143%</div>
+                <div class="metric-footnote">From “meh” to “wait, what?”</div>
+              </div>
+              <div class="metric">
+                <div class="metric-label">Ad spend sanity</div>
+                <div class="metric-value">On track</div>
+                <div class="metric-footnote">We spiral over the numbers so you don’t.</div>
+              </div>
+            </div>
+
+            <ul class="hero-list">
+              <li>
+                <span class="badge">SB</span>
+                <span>Full-funnel strategy with the energy of a project-managed group chat.</span>
+              </li>
+              <li>
+                <span class="badge">AB</span>
+                <span>A/B tests that answer “is this working or are we just vibing?”</span>
+              </li>
+              <li>
+                <span class="badge">UGC</span>
+                <span>Native-feeling content that’s suspiciously good at printing revenue.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- SERVICES -->
+      <section class="section" id="services">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">Services</div>
+            <h2 class="section-title">What’s on the Shakira Bacon menu?</h2>
+          </div>
+          <p class="section-description">
+            We’re rolling out offers in stages. For now, think
+            <strong>smart strategy, spicy performance, and creative that feels human</strong>,
+            not like it was generated by a sad dashboard.
+          </p>
+        </div>
+
+        <div class="grid-3">
+          <article class="card">
+            <div class="card-label">01 · Strategy</div>
+            <h3 class="card-title">Full-funnel digital strategy</h3>
+            <p class="card-body">
+              Audits, roadmaps, and channel mixes that don’t read like a textbook.
+              We zoom out, zoom in, and delete anything that doesn’t push revenue or sanity forward.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="card-label">02 · Performance</div>
+            <h3 class="card-title">Paid media with feelings</h3>
+            <p class="card-body">
+              Meta, TikTok, Google, LinkedIn – planned, tested, and iterated until the dashboards
+              start flirting with you. No “set and forget”, only “set and obsess”.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="card-label">03 · Creative</div>
+            <h3 class="card-title">Creative & UGC direction</h3>
+            <p class="card-body">
+              Hooks, scripts, and concepts that look native, scroll-stopping and a little too
+              effective for something this unserious.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- PROCESS -->
+      <section class="section">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">Process</div>
+            <h2 class="section-title">How we work (the bacon protocol)</h2>
+          </div>
+          <p class="section-description">
+            Underneath the jokes: a suspiciously rigorous process. Data, creative, and communication
+            all get equal custody.
+          </p>
+        </div>
+
+        <div class="grid-3">
+          <article class="card">
+            <div class="card-label">Step 1</div>
+            <h3 class="card-title">Audit & diagnosis</h3>
+            <p class="card-body">
+              We dissect your current marketing like a forensic scientist with a ring light:
+              channels, funnels, tracking, messaging, and the vibes.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="card-label">Step 2</div>
+            <h3 class="card-title">Strategy & test plan</h3>
+            <p class="card-body">
+              A focused test plan, not a 60-slide deck. Clear hypotheses, clear metrics, and
+              plenty of room for chaotic brilliance.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="card-label">Step 3</div>
+            <h3 class="card-title">Execution & iteration</h3>
+            <p class="card-body">
+              We launch, learn, and iterate quickly. Transparent reporting, weekly check-ins,
+              and zero gate-keeping on what’s actually working.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section class="section" id="contact">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">Contact</div>
+            <h2 class="section-title">Ready for your marketing glow-up?</h2>
+          </div>
+          <p class="section-description">
+            No 37-field form. Just an email, some context, and we’ll come back with
+            sensible next steps and probably one unreasonably bold idea.
+          </p>
+        </div>
+
+        <div class="contact-layout">
+          <div class="contact-highlight">
+            <h3>Tell us what you’re trying to fix, launch, or resurrect.</h3>
+            <p>
+              New brand, plateaued growth, broken tracking, or general “our ads feel like a
+              beige PowerPoint”? We love a mess with potential.
+            </p>
+            <a class="contact-email" href="mailto:sebastian@shakriabacon.com?subject=Hi%20Shakira%20Bacon">
+              <span class="icon">📮</span>
+              <span>sebastian@shakriabacon.com</span>
+            </a>
+            <div class="contact-footnote">
+              Include your website, main channels, and approximate monthly ad spend if you already run campaigns.
+              We’ll reply with availability and options.
+            </div>
+          </div>
+
+          <div class="contact-form">
+            <p>
+              Prefer structured chaos? Copy this into your email and fill it in. We respect an organised overshare.
+            </p>
+            <div class="fake-field">
+              <span class="label">Brand / Company</span>
+              <span class="value">Acme Corp but make it hot</span>
+            </div>
+            <div class="fake-field">
+              <span class="label">Biggest marketing headache</span>
+              <span class="chip">Pick one (or more)</span>
+            </div>
+            <div class="fake-field">
+              <span class="value">
+                ▢ Our ads don’t convert · ▢ No clear strategy · ▢ Launching something new · ▢ Tracking is chaos
+              </span>
+            </div>
+            <div class="fake-field">
+              <span class="label">Approx. monthly ad budget</span>
+              <span class="value">£ — happy to discuss</span>
+            </div>
+            <div class="fake-field">
+              <span class="label">Ideal timeline</span>
+              <span class="value">ASAP / This quarter / Just exploring</span>
+            </div>
+            <p class="contact-hint">
+              Paste this into your email to
+              <a href="mailto:sebastian@shakriabacon.com">sebastian@shakriabacon.com</a>
+              and we’ll take it from there.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- FOOTER -->
+      <footer>
+        <div class="footer-main">
+          <strong>Sebastian Neaga dba Shakira Bacon</strong> | Managed by Berma LLC dba NoGood
+        </div>
+        <div class="footer-address">
+          Ground Floor, 30 Churchill Pl, London E14 5RE, UK | Ground Floor, 6 Hanover Quay, Dublin D02 HP71, Ireland
+        </div>
+        <div class="footer-meta">
+          © 2025 Sebastian Neaga dba Shakira Bacon. All rights reserved.
+        </div>
+      </footer>
+    </div>
+  </div>
 </body>
 </html>
