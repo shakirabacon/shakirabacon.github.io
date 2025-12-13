@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pay Invoice | Shakira Bacon</title>
+
+  <!-- Stripe Buy Button -->
+  <script async src="https://js.stripe.com/v3/buy-button.js"></script>
+
+  <style>
+    :root {
+      --bg:#0b1220;
+      --card:rgba(255,255,255,.08);
+      --border:rgba(255,255,255,.18);
+      --text:#e5e7eb;
+      --muted:#a1a1aa;
+    }
+
+    * { box-sizing:border-box }
+
+    body {
+      margin:0;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:28px;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at 0% 0%, rgba(255,0,128,.22), transparent 55%),
+        radial-gradient(circle at 100% 100%, rgba(56,189,248,.18), transparent 55%),
+        radial-gradient(circle at 60% 40%, rgba(250,204,21,.15), transparent 55%),
+        var(--bg);
+    }
+
+    .wrap { width:min(720px,100%) }
+
+    .card {
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:22px;
+      padding:22px;
+      backdrop-filter: blur(16px);
+      box-shadow:0 24px 70px rgba(0,0,0,.35);
+    }
+
+    header {
+      display:flex;
+      gap:14px;
+      align-items:center;
+      margin-bottom:18px;
+    }
+
+    .logoBox {
+      width:64px;
+      height:64px;
+      border-radius:18px;
+      background:conic-gradient(from 180deg,#f97316,#ec4899,#6366f1,#22c55e,#eab308,#f97316);
+      padding:8px;
+      display:grid;
+      place-items:center;
+    }
+
+    .logoInner {
+      width:100%;
+      height:100%;
+      border-radius:14px;
+      background:#fff;
+      display:grid;
+      place-items:center;
+      overflow:hidden;
+    }
+
+    .logoInner img { max-width:92%; max-height:92%; }
+
+    h1 {
+      font-size:22px;
+      margin:0;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+    }
+
+    .sub {
+      font-size:13px;
+      color:var(--muted);
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      margin-top:4px;
+    }
+
+    label {
+      display:block;
+      margin:10px 0 6px;
+      font-size:12px;
+      color:var(--muted);
+    }
+
+    input {
+      width:100%;
+      padding:11px 12px;
+      border-radius:14px;
+      border:1px solid var(--border);
+      background:rgba(0,0,0,.25);
+      color:var(--text);
+      outline:none;
+    }
+
+    .grid {
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+    }
+
+    .full { grid-column:1 / -1 }
+
+    button {
+      margin-top:16px;
+      width:100%;
+      border:0;
+      border-radius:999px;
+      padding:12px 16px;
+      font-weight:700;
+      cursor:pointer;
+      color:#0b1220;
+      background:linear-gradient(135deg,#f97316,#ec4899,#6366f1);
+      box-shadow:0 18px 45px rgba(0,0,0,.45);
+    }
+
+    .hint {
+      font-size:12px;
+      color:var(--muted);
+      margin:12px 0;
+      line-height:1.5;
+    }
+
+    .paySection {
+      display:none;
+      margin-top:20px;
+      padding-top:16px;
+      border-top:1px dashed var(--border);
+      text-align:center;
+    }
+
+    .pill {
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:6px 12px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background:rgba(0,0,0,.25);
+      font-size:12px;
+      color:var(--muted);
+      margin-bottom:12px;
+    }
+
+    .dot {
+      width:8px;
+      height:8px;
+      border-radius:50%;
+      background:#22c55e;
+      box-shadow:0 0 0 5px rgba(34,197,94,.25);
+    }
+
+    @media (max-width:640px){
+      .grid { grid-template-columns:1fr }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+
+      <header>
+        <div class="logoBox">
+          <div class="logoInner">
+            <img src="images/shakira-bacon-logo.png" alt="Shakira Bacon logo">
+          </div>
+        </div>
+        <div>
+          <h1>Shakira Bacon</h1>
+          <div class="sub">Invoice Payment</div>
+        </div>
+      </header>
+
+      <p class="hint">
+        Please confirm your details below. You will then be taken to Stripe to complete payment
+        for the agreed invoice amount.
+      </p>
+
+      <form id="invoiceForm">
+        <div class="grid">
+          <div>
+            <label>First name</label>
+            <input id="firstName" required>
+          </div>
+          <div>
+            <label>Last name</label>
+            <input id="lastName" required>
+          </div>
+          <div class="full">
+            <label>Company name</label>
+            <input id="company" required>
+          </div>
+          <div class="full">
+            <label>Invoice number</label>
+            <input id="invoice" required>
+          </div>
+        </div>
+
+        <button type="submit">Continue to payment</button>
+      </form>
+
+      <!-- Stripe Buy Button -->
+      <div class="paySection" id="paySection">
+        <div class="pill">
+          <span class="dot"></span>
+          Details confirmed
+        </div>
+
+        <p class="hint">
+          Click below to complete payment securely via Stripe.
+        </p>
+
+        <stripe-buy-button
+          buy-button-id="buy_btn_1Se24RCjbLLS1JzXd9Oulkpb"
+          publishable-key="pk_live_51Sd9prCjbLLS1JzXswkAK6hBxxIS0EbgbdS1yXIjWYFawcC1YZ3rPGyPcbaKcFiF5Xp1MgXcMNUkp2Zj3Q9Svhnc00FhNX1Ful">
+        </stripe-buy-button>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("invoiceForm").addEventListener("submit", e => {
+      e.preventDefault();
+      document.getElementById("paySection").style.display = "block";
+      document.getElementById("paySection").scrollIntoView({ behavior: "smooth" });
+    });
+  </script>
+</body>
+</html>
