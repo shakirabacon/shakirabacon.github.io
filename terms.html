@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Terms & Conditions | Shakira Bacon</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --text-main: #e5e7eb;
+      --text-muted: #a1a1aa;
+      --radius-xl: 1.6rem;
+      --shadow-soft: 0 22px 60px rgba(15, 23, 42, 0.45);
+      --max-width: 1120px;
+      --border: rgba(148,163,184,0.40);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text-main);
+      background:
+        radial-gradient(circle at 0% 0%, rgba(255,0,128,0.18), transparent 55%),
+        radial-gradient(circle at 100% 100%, rgba(55,118,255,0.18), transparent 55%),
+        radial-gradient(circle at 60% 40%, rgba(250,204,21,0.12), transparent 55%),
+        linear-gradient(135deg, #0f172a 0%, #020617 40%, #020617 60%, #020617 100%);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .orb {
+      position: fixed;
+      width: 420px;
+      height: 420px;
+      filter: blur(120px);
+      opacity: 0.4;
+      pointer-events: none;
+      z-index: -1;
+    }
+    .orb.one { top: -80px; left: -40px; background: #ff4d8a; }
+    .orb.two { bottom: -120px; right: -40px; background: #38bdf8; }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+      padding: 2.5rem 1.25rem;
+    }
+
+    .shell {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      background:
+        radial-gradient(circle at top left, rgba(255,255,255,0.18), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(255,255,255,0.12), transparent 55%),
+        rgba(15,23,42,0.94);
+      border-radius: 2rem;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-soft);
+      padding: 1.75rem 1.75rem 2.2rem;
+      backdrop-filter: blur(20px);
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* HEADER (matches index) */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .brand { display: flex; align-items: center; gap: 1.1rem; }
+
+    .brand-logo {
+      width: 72px; height: 72px; padding: 8px;
+      border-radius: 1.4rem;
+      background: conic-gradient(from 160deg,#f97316,#ec4899,#6366f1,#22c55e,#eab308,#f97316);
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 14px 40px rgba(15,23,42,0.45);
+    }
+
+    .brand-logo-inner {
+      width: 100%; height: 100%;
+      border-radius: 1.1rem;
+      background: #f9fafb;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+    }
+
+    .brand-logo img { max-width: 90%; max-height: 90%; display: block; }
+
+    .brand-text { display: flex; flex-direction: column; gap: 0.15rem; }
+    .brand-name {
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #e5e7eb;
+    }
+    .brand-sub {
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #9ca3af;
+    }
+
+    .header-right { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; justify-content: flex-end; }
+
+    .btn-outline {
+      padding: 0.45rem 1.1rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.8);
+      background: radial-gradient(circle at top left, rgba(248,250,252,0.14), rgba(15,23,42,0.95));
+      color: #e5e7eb;
+      font-size: 0.82rem;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      cursor: pointer;
+      transition: all 0.18s ease;
+      backdrop-filter: blur(16px);
+    }
+    .btn-outline:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 30px rgba(15,23,42,0.75);
+      border-color: #f97316;
+    }
+    .btn-outline span.icon { font-size: 1rem; transform: translateY(1px); }
+
+    .btn-outline.pay-invoice {
+      border-color: rgba(249, 115, 22, 0.95);
+      box-shadow: 0 10px 26px rgba(249, 115, 22, 0.18);
+    }
+
+    /* CONTENT */
+    .content {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 1.2rem;
+      margin-bottom: 1.6rem;
+    }
+
+    .title-card {
+      background: radial-gradient(circle at top left, rgba(248,250,252,0.16), rgba(15,23,42,0.96));
+      border-radius: var(--radius-xl);
+      padding: 1.35rem 1.35rem 1.15rem;
+      border: 1px solid rgba(148,163,184,0.7);
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(18px);
+    }
+
+    h1 {
+      font-size: clamp(2rem, 2vw + 1.1rem, 2.6rem);
+      line-height: 1.1;
+      letter-spacing: -0.04em;
+      margin-bottom: 0.55rem;
+      color: #f9fafb;
+    }
+
+    .subtitle {
+      color: #cbd5f5;
+      font-size: 0.95rem;
+      max-width: 62ch;
+      line-height: 1.55;
+    }
+
+    .meta {
+      margin-top: 0.9rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.65);
+      background: rgba(15,23,42,0.75);
+      color: #a1a1aa;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .doc {
+      background: radial-gradient(circle at top left, rgba(248,250,252,0.12), rgba(15,23,42,0.98));
+      border-radius: 1.35rem;
+      padding: 1.4rem;
+      border: 1px solid rgba(148,163,184,0.7);
+      box-shadow: 0 18px 40px rgba(15,23,42,0.8);
+    }
+
+    .doc h2 {
+      font-size: 1.05rem;
+      font-weight: 650;
+      letter-spacing: -0.02em;
+      margin: 1.1rem 0 0.45rem;
+      color: #f9fafb;
+    }
+    .doc h2:first-child { margin-top: 0; }
+
+    .doc p, .doc li {
+      color: #cbd5f5;
+      font-size: 0.92rem;
+      line-height: 1.75;
+    }
+
+    .doc p { margin: 0.55rem 0; }
+
+    .doc ul {
+      margin: 0.55rem 0 0.9rem 1.15rem;
+      display: grid;
+      gap: 0.35rem;
+    }
+
+    .callout {
+      margin-top: 1rem;
+      padding: 1rem 1.1rem;
+      border-radius: 1.1rem;
+      border: 1px solid rgba(148,163,184,0.65);
+      background: rgba(15,23,42,0.75);
+      color: #e5e7eb;
+    }
+    .callout strong { color: #f9fafb; }
+
+    /* FOOTER (matches index vibe) */
+    footer {
+      margin-top: auto;
+      padding-top: 1.3rem;
+      border-top: 1px solid rgba(148,163,184,0.6);
+      font-size: 0.78rem;
+      color: #9ca3af;
+    }
+    .footer-main { color: #e5e7eb; margin-bottom: 0.35rem; }
+    .footer-main strong { font-weight: 600; }
+    .footer-address { margin-bottom: 0.2rem; }
+
+    @media (max-width: 880px) {
+      .shell { padding: 1.5rem 1.25rem 1.8rem; }
+      header { flex-direction: column; align-items: flex-start; }
+      .header-right { justify-content: flex-start; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="orb one"></div>
+  <div class="orb two"></div>
+
+  <div class="page">
+    <div class="shell">
+
+      <header>
+        <a class="brand" href="/">
+          <div class="brand-logo">
+            <div class="brand-logo-inner">
+              <img src="images/shakira-bacon-logo.png" alt="Shakira Bacon logo" />
+            </div>
+          </div>
+          <div class="brand-text">
+            <div class="brand-name">Shakira Bacon</div>
+            <div class="brand-sub">Digital Solutions</div>
+          </div>
+        </a>
+
+        <div class="header-right">
+          <a class="btn-outline pay-invoice" href="https://shakirabacon.com/pay">
+            <span class="icon">💳</span><span>Pay Your Invoice</span>
+          </a>
+          <a class="btn-outline" href="mailto:business@shakriabacon.com">
+            <span class="icon">✉️</span><span>business@shakriabacon.com</span>
+          </a>
+        </div>
+      </header>
+
+      <main class="content">
+        <section class="title-card">
+          <h1>Terms & Conditions</h1>
+          <p class="subtitle">
+            These Terms and Conditions govern your use of the Shakira Bacon website and the digital marketing services
+            provided by <strong>Sebastian Neaga trading as Shakira Bacon</strong>.
+          </p>
+          <div class="meta">Last updated · 2025</div>
+        </section>
+
+        <section class="doc">
+          <h2>1. About Shakira Bacon</h2>
+          <p>
+            Shakira Bacon is a digital marketing studio providing professional services including (but not limited to)
+            marketing strategy, paid advertising management, creative direction, content development, campaign optimisation,
+            and performance reporting.
+          </p>
+          <p><strong>We provide digital services only</strong> and do not sell or ship physical goods.</p>
+
+          <h2>2. Services</h2>
+          <p>
+            All services are provided on a professional, best-efforts basis. Specific deliverables, timelines, and fees
+            will be agreed in writing (via email, proposal, or contract) prior to commencement.
+          </p>
+          <p>
+            We reserve the right to refuse or discontinue services at our discretion, including where cooperation, payment,
+            or required access is not provided.
+          </p>
+
+          <h2>3. Payments & Fees</h2>
+          <ul>
+            <li>Payments are due as agreed in advance, including retainers, onboarding fees, or invoice-based payments.</li>
+            <li>All fees are exclusive of applicable taxes unless stated otherwise.</li>
+            <li>Payments are processed securely via third-party providers such as Stripe or PayPal.</li>
+            <li>Late or non-payment may result in suspension or termination of services.</li>
+          </ul>
+          <p>All payments made are <strong>non-refundable</strong> unless otherwise agreed in writing.</p>
+
+          <h2>4. Client Responsibilities</h2>
+          <p>Clients agree to:</p>
+          <ul>
+            <li>Provide accurate and complete information</li>
+            <li>Supply required access to accounts, platforms, and materials in a timely manner</li>
+            <li>Review and approve deliverables promptly</li>
+            <li>Comply with applicable laws, platform policies, and advertising regulations</li>
+          </ul>
+          <p>
+            We are not responsible for delays or performance issues caused by incomplete or inaccurate client information.
+          </p>
+
+          <h2>5. Intellectual Property</h2>
+          <p>
+            Unless otherwise agreed in writing, all materials created by Shakira Bacon remain our intellectual property
+            until full payment is received. Upon full payment, the client is granted a non-exclusive, non-transferable
+            licence to use deliverables for their intended purpose.
+          </p>
+          <p>
+            We reserve the right to reference non-confidential work for portfolio, case study, and marketing purposes.
+          </p>
+
+          <h2>6. No Guarantees</h2>
+          <p>
+            While we aim to deliver high-quality and effective marketing services, <strong>we do not guarantee specific results</strong>,
+            including revenue, leads, conversions, or platform performance. Outcomes may be affected by factors beyond our control,
+            including market conditions, platform algorithms, budgets, and client execution.
+          </p>
+
+          <h2>7. Limitation of Liability</h2>
+          <p>To the fullest extent permitted by law:</p>
+          <ul>
+            <li>We are not liable for indirect, incidental, consequential, or loss of profit damages.</li>
+            <li>Our total liability is limited to the fees paid for the specific services giving rise to the claim.</li>
+          </ul>
+
+          <h2>8. Confidentiality</h2>
+          <p>
+            Both parties agree to keep confidential any non-public, proprietary, or sensitive information disclosed in connection
+            with services. This obligation survives termination.
+          </p>
+
+          <h2>9. Termination</h2>
+          <p>
+            Either party may terminate services by written notice in accordance with any agreed notice period. Upon termination,
+            outstanding fees become immediately due and access to services and deliverables may be suspended. No refunds will be issued
+            for work already performed.
+          </p>
+
+          <h2>10. Website Use</h2>
+          <p>
+            You agree not to misuse our website, including attempting unauthorised access, interfering with functionality, or using
+            the site for unlawful purposes. Website content is provided for general information and may be updated without notice.
+          </p>
+
+          <h2>11. Third-Party Services</h2>
+          <p>
+            We may use or integrate third-party platforms (e.g., advertising platforms, analytics tools, payment processors). We are not
+            responsible for the availability, performance, or policies of third-party services.
+          </p>
+
+          <h2>12. Governing Law</h2>
+          <p>
+            These Terms are governed by and construed in accordance with the laws of <strong>Ireland</strong>, without regard to conflict
+            of law principles.
+          </p>
+
+          <h2>13. Changes to These Terms</h2>
+          <p>
+            We may update these Terms from time to time. The latest version will be posted on our website, and continued use constitutes
+            acceptance of the updated Terms.
+          </p>
+
+          <h2>14. Contact</h2>
+          <p>
+            For questions regarding these Terms or our services, please contact:
+          </p>
+          <div class="callout">
+            <strong>Shakira Bacon</strong><br />
+            Email: <a href="mailto:business@shakriabacon.com" style="text-decoration: underline;">business@shakriabacon.com</a>
+          </div>
+
+          <p style="margin-top:1rem;">
+            By using our website or services, you acknowledge that you have read, understood, and agreed to these Terms and Conditions.
+          </p>
+        </section>
+      </main>
+
+      <footer>
+        <div class="footer-main">
+          <strong>Sebastian Neaga dba Shakira Bacon</strong> | Managed by Berma LLC dba NoGood
+        </div>
+        <div class="footer-address">
+          Ground Floor, 30 Churchill Pl, London E14 5RE, UK | Ground Floor, 6 Hanover Quay, Dublin D02 HP71, Ireland
+        </div>
+        <div class="footer-meta">
+          © 2025 Sebastian Neaga dba Shakira Bacon. All rights reserved.
+        </div>
+      </footer>
+
+    </div>
+  </div>
+</body>
+</html>
