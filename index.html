@@ -5,36 +5,66 @@
   <title>Shakira Bacon – Rainbow-Powered Digital Marketing</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
   <style>
     :root {
-      --text-main: #111827;
-      --text-muted: #4b5563;
-      --radius-xl: 1.6rem;
-      --shadow-soft: 0 22px 60px rgba(15, 23, 42, 0.18);
       --max-width: 1120px;
+
+      --bg0:#070a12;
+      --bg1:#0b1220;
+
+      --text:#e5e7eb;
+      --muted:#a1a1aa;
+      --soft:#cbd5f5;
+
+      --border:rgba(255,255,255,.14);
+      --shadow:0 24px 80px rgba(0,0,0,.45);
+      --shadow-soft:0 22px 60px rgba(15, 23, 42, 0.22);
+
+      --radius-xl: 2rem;
+
+      --grad: linear-gradient(135deg, #f97316, #ec4899, #6366f1);
+      --grad-2: linear-gradient(120deg, rgba(249,115,22,.22), rgba(236,72,153,.20), rgba(99,102,241,.18));
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { height: 100%; }
 
     body {
       font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      color: var(--text-main);
+      color: var(--text);
       background:
-        radial-gradient(circle at 0% 0%, rgba(255,0,128,0.18), transparent 55%),
-        radial-gradient(circle at 100% 100%, rgba(55,118,255,0.18), transparent 55%),
-        linear-gradient(135deg,
-          #0f172a 0%,
-          #020617 40%,
-          #020617 60%,
-          #020617 100%);
+        radial-gradient(1200px 700px at 10% 10%, rgba(236,72,153,.20), transparent 60%),
+        radial-gradient(1000px 700px at 85% 30%, rgba(99,102,241,.18), transparent 60%),
+        radial-gradient(900px 650px at 60% 90%, rgba(34,197,94,.12), transparent 60%),
+        radial-gradient(900px 600px at 30% 75%, rgba(250,204,21,.12), transparent 60%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
       min-height: 100vh;
       -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    .orb {
+      position: fixed;
+      width: 520px;
+      height: 520px;
+      filter: blur(140px);
+      opacity: 0.35;
+      pointer-events: none;
+      z-index: -2;
+    }
+    .orb.one { top: -120px; left: -80px; background: #ff4d8a; }
+    .orb.two { bottom: -160px; right: -80px; background: #38bdf8; }
+    .orb.three { top: 35%; left: 55%; background: #f97316; opacity: .18; }
+
+    .bgNoise{
+      position:fixed; inset:0;
+      pointer-events:none;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.16'/%3E%3C/svg%3E");
+      mix-blend-mode:overlay;
+      opacity:.20;
+      z-index:-1;
     }
 
     .page {
@@ -42,65 +72,64 @@
       display: flex;
       align-items: stretch;
       justify-content: center;
-      padding: 2.5rem 1.25rem;
+      padding: 2.6rem 1.25rem;
     }
 
     .shell {
       width: 100%;
       max-width: var(--max-width);
       margin: 0 auto;
-      background: radial-gradient(circle at top left, rgba(255,255,255,0.18), transparent 55%),
-                  radial-gradient(circle at bottom right, rgba(255,255,255,0.12), transparent 55%),
-                  rgba(15,23,42,0.94);
-      border-radius: 2rem;
-      border: 1px solid rgba(148,163,184,0.4);
+      background:
+        radial-gradient(circle at top left, rgba(255,255,255,0.18), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(255,255,255,0.10), transparent 55%),
+        rgba(15,23,42,0.92);
+      border-radius: var(--radius-xl);
+      border: 1px solid rgba(148,163,184,0.35);
       box-shadow: var(--shadow-soft);
-      padding: 1.75rem 1.75rem 2.2rem;
+      padding: 1.9rem 1.9rem 2.3rem;
       backdrop-filter: blur(20px);
       display: flex;
       flex-direction: column;
+      position: relative;
+      overflow: hidden;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
+    .shell::before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background:
+        radial-gradient(900px 260px at 18% 0%, rgba(236,72,153,.22), transparent 60%),
+        radial-gradient(900px 260px at 82% 8%, rgba(99,102,241,.18), transparent 62%),
+        radial-gradient(900px 260px at 60% 110%, rgba(34,197,94,.12), transparent 65%);
+      filter: blur(10px);
+      opacity: .8;
+      pointer-events:none;
     }
+    .shell > * { position: relative; z-index: 1; }
 
-    /* ABSTRACT ORBS (subtle, behind card) */
-    .orb {
-      position: fixed;
-      width: 420px;
-      height: 420px;
-      filter: blur(120px);
-      opacity: 0.4;
-      pointer-events: none;
-      z-index: -1;
-    }
-
-    .orb.one { top: -80px; left: -40px; background: #ff4d8a; }
-    .orb.two { bottom: -120px; right: -40px; background: #38bdf8; }
-
-    /* HEADER */
+    a { color: inherit; text-decoration: none; }
 
     header {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 1.5rem;
-      margin-bottom: 2.4rem;
+      margin-bottom: 2.2rem;
     }
 
     .brand {
       display: flex;
       align-items: center;
       gap: 1.1rem;
+      min-width: 0;
     }
 
     .brand-logo {
-      width: 72px;
-      height: 72px;
-      padding: 8px;
-      border-radius: 1.4rem;
+      width: 76px;
+      height: 76px;
+      padding: 9px;
+      border-radius: 1.55rem;
       background:
         conic-gradient(from 160deg,
           #f97316,
@@ -112,13 +141,14 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 14px 40px rgba(15,23,42,0.45);
+      box-shadow: 0 18px 55px rgba(0,0,0,0.38);
+      flex: 0 0 auto;
     }
 
     .brand-logo-inner {
       width: 100%;
       height: 100%;
-      border-radius: 1.1rem;
+      border-radius: 1.25rem;
       background: #f9fafb;
       display: flex;
       align-items: center;
@@ -126,31 +156,26 @@
       overflow: hidden;
     }
 
-    .brand-logo img {
-      max-width: 90%;
-      max-height: 90%;
-      display: block;
-    }
+    .brand-logo img { max-width: 90%; max-height: 90%; display: block; }
 
-    .brand-text {
-      display: flex;
-      flex-direction: column;
-      gap: 0.15rem;
-    }
+    .brand-text { display: flex; flex-direction: column; gap: 0.2rem; min-width: 0; }
 
     .brand-name {
       font-size: 1.4rem;
-      font-weight: 700;
-      letter-spacing: 0.16em;
+      font-weight: 800;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: #e5e7eb;
+      color: #f9fafb;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .brand-sub {
       font-size: 0.78rem;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.20em;
       text-transform: uppercase;
-      color: #9ca3af;
+      color: var(--muted);
     }
 
     .header-right {
@@ -164,15 +189,16 @@
     .status-pill {
       display: inline-flex;
       align-items: center;
-      gap: 0.45rem;
-      padding: 0.35rem 0.75rem;
+      gap: 0.5rem;
+      padding: 0.42rem 0.85rem;
       border-radius: 999px;
-      background: rgba(15,23,42,0.9);
-      border: 1px solid rgba(148,163,184,0.6);
-      color: #e5e7eb;
-      font-size: 0.75rem;
+      background: rgba(0,0,0,0.22);
+      border: 1px solid rgba(255,255,255,0.18);
+      color: rgba(229,231,235,0.92);
+      font-size: 0.72rem;
       text-transform: uppercase;
-      letter-spacing: 0.16em;
+      letter-spacing: 0.18em;
+      backdrop-filter: blur(16px);
     }
 
     .status-dot {
@@ -180,317 +206,333 @@
       height: 8px;
       border-radius: 999px;
       background: #22c55e;
-      box-shadow: 0 0 0 5px rgba(34,197,94,0.35);
+      box-shadow: 0 0 0 6px rgba(34,197,94,0.22);
     }
 
     .btn-outline {
-      padding: 0.45rem 1.1rem;
+      padding: 0.5rem 1.05rem;
       border-radius: 999px;
-      border: 1px solid rgba(148,163,184,0.8);
-      background: radial-gradient(circle at top left, rgba(248,250,252,0.14), rgba(15,23,42,0.95));
-      color: #e5e7eb;
+      border: 1px solid rgba(255,255,255,0.20);
+      background: rgba(0,0,0,0.20);
+      color: rgba(229,231,235,0.95);
       font-size: 0.82rem;
-      font-weight: 500;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.45rem;
-      cursor: pointer;
-      transition: all 0.18s ease;
-      backdrop-filter: blur(16px);
-    }
-
-    .btn-outline span.icon {
-      font-size: 1rem;
-      transform: translateY(1px);
-    }
-
-    .btn-outline:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 12px 30px rgba(15,23,42,0.75);
-      border-color: #f97316;
-    }
-
-    /* Make Pay button pop slightly */
-    .btn-outline.pay-invoice {
-      border-color: rgba(249, 115, 22, 0.95);
-      box-shadow: 0 10px 26px rgba(249, 115, 22, 0.18);
-    }
-
-    /* HERO */
-
-    .hero {
-      display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
-      gap: 2.4rem;
-      align-items: center;
-      margin-bottom: 3rem;
-    }
-
-    .hero-kicker {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.45rem;
-      padding: 0.25rem 0.75rem;
-      border-radius: 999px;
-      background: rgba(15,23,42,0.85);
-      border: 1px solid rgba(148,163,184,0.7);
-      color: #e5e7eb;
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      margin-bottom: 1.1rem;
-    }
-
-    .hero-kicker span.tag {
-      padding: 0.15rem 0.55rem;
-      border-radius: 999px;
-      background: radial-gradient(circle at 0 0, #f97316, #ec4899);
-      font-weight: 600;
-      letter-spacing: 0.2em;
-    }
-
-    h1.hero-title {
-      font-size: clamp(2.3rem, 3.1vw + 1.3rem, 3.4rem);
-      line-height: 1.06;
-      letter-spacing: -0.04em;
-      margin-bottom: 0.9rem;
-      color: #f9fafb;
-    }
-
-    .hero-title span {
-      background: linear-gradient(120deg, #f97316, #ec4899, #6366f1);
-      -webkit-background-clip: text;
-      color: transparent;
-    }
-
-    .hero-subtitle {
-      font-size: 0.98rem;
-      max-width: 32rem;
-      color: #cbd5f5;
-      margin-bottom: 1.7rem;
-    }
-
-    .hero-subtitle strong {
-      color: #e5e7eb;
-      font-weight: 600;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.8rem;
-      margin-bottom: 1.1rem;
-    }
-
-    .btn-primary {
-      border-radius: 999px;
-      padding: 0.8rem 1.5rem;
-      border: none;
-      background: linear-gradient(135deg, #f97316, #ec4899, #6366f1);
-      color: #f9fafb;
-      font-size: 0.95rem;
       font-weight: 600;
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
       cursor: pointer;
-      box-shadow: 0 18px 45px rgba(15,23,42,0.9);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease, filter .18s ease;
+      backdrop-filter: blur(16px);
+      white-space: nowrap;
+    }
+    .btn-outline:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 34px rgba(0,0,0,.45);
+      border-color: rgba(249, 115, 22, 0.85);
+      filter: brightness(1.02);
+    }
+    .btn-outline span.icon { font-size: 1rem; transform: translateY(1px); }
+
+    /* Utility button: slightly quieter than primary-looking buttons */
+    .btn-outline.utility{
+      opacity: .92;
+    }
+    .btn-outline.utility:hover{
+      opacity: 1;
     }
 
-    .btn-primary span.icon {
-      font-size: 1.2rem;
-      transform: translateY(1px);
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr);
+      gap: 2.4rem;
+      align-items: center;
+      margin-bottom: 2.9rem;
     }
 
+    .hero-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.28rem 0.85rem;
+      border-radius: 999px;
+      background: rgba(0,0,0,0.22);
+      border: 1px solid rgba(255,255,255,0.18);
+      color: rgba(229,231,235,0.92);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.20em;
+      margin-bottom: 1.1rem;
+      backdrop-filter: blur(16px);
+    }
+    .hero-kicker span.tag{
+      padding: 0.18rem 0.62rem;
+      border-radius: 999px;
+      background: var(--grad);
+      color: #0b1220;
+      font-weight: 800;
+      letter-spacing: 0.22em;
+    }
+
+    h1.hero-title {
+      font-size: clamp(2.35rem, 3.2vw + 1.2rem, 3.55rem);
+      line-height: 1.05;
+      letter-spacing: -0.045em;
+      margin-bottom: 0.9rem;
+      color: #f9fafb;
+    }
+    .hero-title span {
+      background: linear-gradient(120deg, #f97316, #ec4899, #6366f1, #22c55e);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 1.02rem;
+      max-width: 36rem;
+      color: rgba(203,213,245,0.95);
+      margin-bottom: 1.7rem;
+      line-height: 1.6;
+    }
+    .hero-subtitle strong { color: #e5e7eb; font-weight: 700; }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+      margin-bottom: 1.1rem;
+      align-items: center;
+    }
+
+    .btn-primary {
+      border-radius: 999px;
+      padding: 0.82rem 1.55rem;
+      border: none;
+      background: var(--grad);
+      color: #0b1220;
+      font-size: 0.95rem;
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      cursor: pointer;
+      box-shadow: 0 18px 55px rgba(0,0,0,.50);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, filter .2s ease;
+      white-space: nowrap;
+    }
     .btn-primary:hover {
       transform: translateY(-2px) scale(1.01);
-      box-shadow: 0 24px 60px rgba(15,23,42,1);
+      box-shadow: 0 26px 70px rgba(0,0,0,.55);
+      filter: brightness(1.03);
     }
+    .btn-primary span.icon { font-size: 1.15rem; transform: translateY(1px); }
 
     .hero-note {
-      font-size: 0.8rem;
-      color: #9ca3af;
+      font-size: 0.82rem;
+      color: rgba(161,161,170,0.98);
+      line-height: 1.55;
     }
-
-    .hero-note strong {
-      color: #e5e7eb;
-    }
-
-    .hero-right {
-      position: relative;
-    }
+    .hero-note strong { color: rgba(229,231,235,0.95); }
 
     .hero-card {
-      background: radial-gradient(circle at top left, rgba(248,250,252,0.18), rgba(15,23,42,0.96));
+      background: radial-gradient(circle at top left, rgba(248,250,252,0.16), rgba(0,0,0,0.22));
       border-radius: var(--radius-xl);
-      padding: 1.5rem 1.5rem 1.35rem;
-      border: 1px solid rgba(148,163,184,0.7);
-      box-shadow: var(--shadow-soft);
+      padding: 1.55rem 1.55rem 1.45rem;
+      border: 1px solid rgba(255,255,255,0.18);
+      box-shadow: var(--shadow);
       backdrop-filter: blur(18px);
-      color: #e5e7eb;
-      font-size: 0.9rem;
+      color: rgba(229,231,235,0.95);
+      position: relative;
+      overflow: hidden;
     }
+    .hero-card::after{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background: var(--grad-2);
+      filter: blur(16px);
+      opacity: .55;
+      pointer-events:none;
+    }
+    .hero-card > * { position: relative; z-index: 1; }
 
     .hero-card-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
       margin-bottom: 1rem;
+      gap: 1rem;
     }
 
     .hero-card-title {
-      font-size: 0.9rem;
-      font-weight: 600;
+      font-size: 0.92rem;
+      font-weight: 800;
       display: flex;
       align-items: center;
-      gap: 0.45rem;
+      gap: 0.55rem;
+      letter-spacing: -0.01em;
     }
 
     .hero-chip {
       font-size: 0.7rem;
-      padding: 0.2rem 0.6rem;
+      padding: 0.22rem 0.65rem;
       border-radius: 999px;
-      background: rgba(15,23,42,0.9);
-      border: 1px solid rgba(148,163,184,0.9);
+      background: rgba(0,0,0,0.22);
+      border: 1px solid rgba(255,255,255,0.20);
       text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: #cbd5f5;
+      letter-spacing: 0.18em;
+      color: rgba(203,213,245,0.95);
+      white-space: nowrap;
     }
 
     .hero-metrics {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 0.8rem;
-      margin-bottom: 1rem;
+      gap: 0.85rem;
+      margin-bottom: 1.05rem;
     }
 
     .metric {
-      padding: 0.85rem 0.9rem;
-      border-radius: 1rem;
-      background: rgba(15,23,42,0.92);
-      border: 1px solid rgba(148,163,184,0.55);
+      padding: 0.95rem 0.95rem;
+      border-radius: 1.05rem;
+      background: rgba(0,0,0,0.22);
+      border: 1px solid rgba(255,255,255,0.16);
     }
 
     .metric-label {
       font-size: 0.72rem;
       text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: #9ca3af;
-      margin-bottom: 0.25rem;
+      letter-spacing: 0.18em;
+      color: rgba(161,161,170,0.95);
+      margin-bottom: 0.3rem;
     }
 
     .metric-value {
-      font-size: 1.25rem;
-      font-weight: 700;
+      font-size: 1.3rem;
+      font-weight: 900;
       letter-spacing: -0.03em;
       margin-bottom: 0.15rem;
     }
 
     .metric-footnote {
       font-size: 0.72rem;
-      color: #9ca3af;
+      color: rgba(161,161,170,0.95);
+      line-height: 1.45;
     }
 
     .hero-list {
-      font-size: 0.8rem;
-      color: #cbd5f5;
+      font-size: 0.82rem;
+      color: rgba(203,213,245,0.95);
       list-style: none;
       display: grid;
-      gap: 0.35rem;
-      margin-top: 0.4rem;
+      gap: 0.45rem;
+      margin-top: 0.25rem;
     }
 
     .hero-list li {
       display: flex;
-      align-items: center;
-      gap: 0.45rem;
+      align-items: flex-start;
+      gap: 0.55rem;
+      line-height: 1.5;
     }
 
     .hero-list span.badge {
-      width: 18px;
-      height: 18px;
+      width: 20px;
+      height: 20px;
       border-radius: 999px;
-      background: linear-gradient(135deg,#f97316,#ec4899,#6366f1);
+      background: var(--grad);
       font-size: 0.62rem;
-      color: #f9fafb;
+      font-weight: 900;
+      color: #0b1220;
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      flex: 0 0 auto;
+      transform: translateY(1px);
     }
 
-    /* SECTIONS */
-
-    .section {
-      margin-bottom: 2.7rem;
-    }
+    .section { margin-bottom: 2.75rem; }
 
     .section-header {
       display: flex;
       align-items: baseline;
       justify-content: space-between;
       gap: 1.5rem;
-      margin-bottom: 1.4rem;
+      margin-bottom: 1.45rem;
       flex-wrap: wrap;
     }
 
     .section-kicker {
       font-size: 0.75rem;
       text-transform: uppercase;
-      letter-spacing: 0.18em;
-      color: #9ca3af;
+      letter-spacing: 0.22em;
+      color: rgba(161,161,170,0.98);
       margin-bottom: 0.2rem;
     }
 
     .section-title {
-      font-size: 1.3rem;
-      font-weight: 600;
+      font-size: 1.36rem;
+      font-weight: 900;
       letter-spacing: -0.02em;
       color: #f9fafb;
     }
 
     .section-description {
-      font-size: 0.88rem;
-      color: #9ca3af;
-      max-width: 26rem;
+      font-size: 0.9rem;
+      color: rgba(161,161,170,0.98);
+      max-width: 30rem;
+      line-height: 1.55;
     }
 
     .grid-3 {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1.4rem;
+      gap: 1.35rem;
     }
 
     .card {
-      background: radial-gradient(circle at top left, rgba(248,250,252,0.14), rgba(15,23,42,0.98));
-      border-radius: 1.3rem;
-      padding: 1.2rem 1.15rem 1.25rem;
-      border: 1px solid rgba(148,163,184,0.7);
-      box-shadow: 0 18px 40px rgba(15,23,42,0.8);
-      font-size: 0.9rem;
-      color: #e5e7eb;
+      background: radial-gradient(circle at top left, rgba(248,250,252,0.12), rgba(0,0,0,0.22));
+      border-radius: 1.45rem;
+      padding: 1.25rem 1.2rem 1.3rem;
+      border: 1px solid rgba(255,255,255,0.16);
+      box-shadow: 0 18px 45px rgba(0,0,0,0.40);
+      color: rgba(229,231,235,0.95);
+      position: relative;
+      overflow: hidden;
     }
+    .card::before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background:
+        radial-gradient(500px 200px at 0% 0%, rgba(249,115,22,.18), transparent 60%),
+        radial-gradient(500px 200px at 100% 0%, rgba(236,72,153,.16), transparent 60%),
+        radial-gradient(500px 200px at 40% 120%, rgba(99,102,241,.14), transparent 60%);
+      filter: blur(14px);
+      opacity: .7;
+      pointer-events:none;
+    }
+    .card > * { position: relative; z-index: 1; }
 
     .card-label {
-      font-size: 0.7rem;
+      font-size: 0.72rem;
       text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: #9ca3af;
-      margin-bottom: 0.3rem;
+      letter-spacing: 0.20em;
+      color: rgba(161,161,170,0.95);
+      margin-bottom: 0.35rem;
     }
 
     .card-title {
-      font-size: 1rem;
-      font-weight: 600;
-      margin-bottom: 0.4rem;
+      font-size: 1.05rem;
+      font-weight: 900;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.01em;
     }
 
     .card-body {
-      font-size: 0.84rem;
-      color: #cbd5f5;
+      font-size: 0.87rem;
+      color: rgba(203,213,245,0.95);
+      line-height: 1.6;
     }
-
-    /* CONTACT */
 
     .contact-layout {
       display: grid;
@@ -499,173 +541,164 @@
     }
 
     .contact-highlight {
-      background: linear-gradient(135deg, #f97316, #ec4899, #6366f1);
-      border-radius: 1.4rem;
-      padding: 1.5rem 1.5rem 1.3rem;
-      box-shadow: 0 22px 55px rgba(15,23,42,0.95);
-      color: #0f172a;
-      font-size: 0.9rem;
+      background: var(--grad);
+      border-radius: 1.6rem;
+      padding: 1.6rem 1.6rem 1.35rem;
+      box-shadow: 0 26px 70px rgba(0,0,0,.55);
+      color: #0b1220;
+      position: relative;
+      overflow: hidden;
     }
+    .contact-highlight::before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background:
+        radial-gradient(650px 240px at 15% 0%, rgba(255,255,255,.25), transparent 60%),
+        radial-gradient(650px 240px at 85% 10%, rgba(255,255,255,.18), transparent 62%);
+      filter: blur(12px);
+      opacity:.7;
+      pointer-events:none;
+    }
+    .contact-highlight > * { position: relative; z-index: 1; }
 
     .contact-highlight h3 {
-      font-size: 1.1rem;
-      margin-bottom: 0.4rem;
+      font-size: 1.18rem;
+      font-weight: 900;
+      margin-bottom: 0.5rem;
       letter-spacing: -0.02em;
     }
 
     .contact-highlight p {
-      font-size: 0.88rem;
-      margin-bottom: 0.7rem;
-      color: #020617;
+      font-size: 0.92rem;
+      margin-bottom: 0.85rem;
+      color: rgba(2,6,23,0.92);
+      line-height: 1.6;
     }
 
     .contact-email {
       display: inline-flex;
       align-items: center;
       gap: 0.55rem;
-      padding: 0.55rem 0.9rem;
+      padding: 0.6rem 0.95rem;
       border-radius: 999px;
-      background: rgba(15,23,42,0.95);
+      background: rgba(0,0,0,0.22);
       color: #f9fafb;
-      font-size: 0.82rem;
-      font-weight: 500;
-      margin-bottom: 0.8rem;
+      font-size: 0.84rem;
+      font-weight: 800;
+      margin-bottom: 0.85rem;
+      border: 1px solid rgba(255,255,255,0.18);
+      box-shadow: 0 14px 34px rgba(0,0,0,.35);
+      backdrop-filter: blur(14px);
     }
-
-    .contact-email span.icon {
-      font-size: 1rem;
-    }
+    .contact-email span.icon { font-size: 1rem; }
 
     .contact-footnote {
-      font-size: 0.78rem;
-      color: #020617;
-      opacity: 0.85;
+      font-size: 0.8rem;
+      color: rgba(2,6,23,0.88);
+      opacity: 0.95;
+      line-height: 1.55;
     }
 
     .contact-form {
-      border-radius: 1.4rem;
-      padding: 1.4rem 1.4rem 1.2rem;
-      border: 1px solid rgba(148,163,184,0.7);
-      background: radial-gradient(circle at top left, rgba(248,250,252,0.12), rgba(15,23,42,0.98));
-      font-size: 0.85rem;
-      color: #e5e7eb;
+      border-radius: 1.6rem;
+      padding: 1.45rem 1.45rem 1.25rem;
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(0,0,0,0.20);
+      box-shadow: 0 18px 45px rgba(0,0,0,.35);
+      color: rgba(229,231,235,0.95);
+      backdrop-filter: blur(18px);
     }
 
     .contact-form p {
-      margin-bottom: 0.7rem;
-      color: #cbd5f5;
+      margin-bottom: 0.85rem;
+      color: rgba(203,213,245,0.95);
+      line-height: 1.6;
+      font-size: 0.88rem;
     }
 
     .fake-field {
-      padding: 0.65rem 0.8rem;
-      border-radius: 0.9rem;
-      border: 1px solid rgba(148,163,184,0.7);
-      background: rgba(15,23,42,0.9);
-      font-size: 0.8rem;
-      color: #e5e7eb;
+      padding: 0.7rem 0.85rem;
+      border-radius: 1rem;
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(0,0,0,0.22);
+      font-size: 0.82rem;
+      color: rgba(229,231,235,0.95);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 0.5rem;
-      margin-bottom: 0.45rem;
+      gap: 0.6rem;
+      margin-bottom: 0.55rem;
     }
 
-    .fake-field span.label {
-      color: #9ca3af;
-    }
-
-    .fake-field span.value {
-      color: #e5e7eb;
-    }
+    .fake-field span.label { color: rgba(161,161,170,0.95); }
+    .fake-field span.value { color: rgba(229,231,235,0.95); }
 
     .fake-field span.chip {
-      padding: 0.15rem 0.55rem;
+      padding: 0.18rem 0.6rem;
       border-radius: 999px;
-      background: rgba(15,23,42,0.9);
-      border: 1px solid rgba(148,163,184,0.9);
+      background: rgba(0,0,0,0.22);
+      border: 1px solid rgba(255,255,255,0.18);
       font-size: 0.72rem;
-      color: #e5e7eb;
+      color: rgba(229,231,235,0.95);
+      white-space: nowrap;
     }
 
     .contact-hint {
-      font-size: 0.76rem;
-      color: #9ca3af;
-      margin-top: 0.2rem;
+      font-size: 0.78rem;
+      color: rgba(161,161,170,0.98);
+      margin-top: 0.25rem;
+      line-height: 1.55;
     }
-
-    /* FOOTER */
+    .contact-hint a{
+      color: rgba(229,231,235,0.95);
+      border-bottom: 1px dashed rgba(229,231,235,0.55);
+    }
+    .contact-hint a:hover{ border-bottom-color: rgba(229,231,235,0.9); }
 
     footer {
-      margin-top: 1.5rem;
-      padding-top: 1.3rem;
-      border-top: 1px solid rgba(148,163,184,0.6);
+      margin-top: 1.55rem;
+      padding-top: 1.35rem;
+      border-top: 1px solid rgba(148,163,184,0.35);
       font-size: 0.78rem;
-      color: #9ca3af;
+      color: rgba(161,161,170,0.98);
+      line-height: 1.6;
+      text-align: center;
     }
 
-    .footer-main {
-      color: #e5e7eb;
-      margin-bottom: 0.35rem;
-    }
-
-    .footer-main strong {
-      font-weight: 600;
-    }
-
-    .footer-address {
-      margin-bottom: 0.2rem;
-    }
+    .footer-main { color: rgba(229,231,235,0.95); margin-bottom: 0.35rem; }
+    .footer-main strong { font-weight: 800; }
+    .footer-address { margin-bottom: 0.25rem; }
 
     .footer-meta a{
-      color:#e5e7eb;
-      text-decoration:none;
-      border-bottom:1px dashed rgba(229,231,235,0.55);
+      color: rgba(229,231,235,0.95);
+      text-decoration: none;
+      border-bottom: 1px dashed rgba(229,231,235,0.55);
     }
-    .footer-meta a:hover{
-      border-bottom-color: rgba(229,231,235,0.9);
-    }
-
-    /* RESPONSIVE */
+    .footer-meta a:hover{ border-bottom-color: rgba(229,231,235,0.9); }
 
     @media (max-width: 880px) {
-      .shell {
-        padding: 1.5rem 1.25rem 1.8rem;
-      }
-      header {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      .header-right {
-        justify-content: flex-start;
-      }
-      .hero {
-        grid-template-columns: minmax(0,1fr);
-      }
-      .hero-right {
-        order: -1;
-      }
-      .grid-3 {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-      .contact-layout {
-        grid-template-columns: minmax(0,1fr);
-      }
+      .shell { padding: 1.55rem 1.25rem 1.85rem; }
+      header { flex-direction: column; align-items: flex-start; }
+      .header-right { justify-content: flex-start; }
+      .hero { grid-template-columns: minmax(0,1fr); }
+      .hero-right { order: -1; }
+      .grid-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .contact-layout { grid-template-columns: minmax(0,1fr); }
     }
 
     @media (max-width: 640px) {
-      .grid-3 {
-        grid-template-columns: minmax(0,1fr);
-      }
-      h1.hero-title {
-        font-size: 2.2rem;
-      }
+      .grid-3 { grid-template-columns: minmax(0,1fr); }
+      h1.hero-title { font-size: 2.2rem; }
     }
   </style>
 </head>
+
 <body>
-  <!-- subtle background orbs -->
   <div class="orb one"></div>
   <div class="orb two"></div>
+  <div class="orb three"></div>
+  <div class="bgNoise"></div>
 
   <div class="page">
     <div class="shell">
@@ -674,13 +707,12 @@
         <div class="brand">
           <div class="brand-logo">
             <div class="brand-logo-inner">
-              <!-- Replace with your actual logo path -->
               <img src="images/shakira-bacon-logo.png" alt="Shakira Bacon logo" />
             </div>
           </div>
           <div class="brand-text">
             <div class="brand-name">Shakira Bacon</div>
-            <div class="brand-sub">Digital Solutions</div>
+            <div class="brand-sub">Rainbow-Powered Digital Marketing</div>
           </div>
         </div>
 
@@ -689,7 +721,14 @@
             <span class="status-dot"></span>
             <span>Founding client spots open</span>
           </div>
-          <a class="btn-outline" href="mailto:sebastian@shakirabacon.com">
+
+          <!-- MOVED HERE: Pay invoice as a utility link -->
+          <a class="btn-outline utility" href="https://shakirabacon.com/pay" title="For existing clients">
+            <span class="icon">🧾</span>
+            <span>Pay invoice</span>
+          </a>
+
+          <a class="btn-outline" href="mailto:business@shakirabacon.com">
             <span class="icon">✉️</span>
             <span>business@shakirabacon.com</span>
           </a>
@@ -703,26 +742,22 @@
             <span class="tag">Beta Studio</span>
             <span>Professional-ish. Deliciously ridiculous.</span>
           </div>
+
           <h1 class="hero-title">
             Digital marketing that’s<br />
             <span>crispy, loud & actually effective.</span>
           </h1>
+
           <p class="hero-subtitle">
-            Shakira Bacon is a boutique digital marketing studio for brands that want
-            <strong>grown-up performance</strong> with <strong>main-character energy</strong> —
-            strategy, ads, and creative that convert without feeling corporate beige.
+            Shakira Bacon is a boutique studio for brands that want <strong>grown-up performance</strong>
+            with <strong>main-character energy</strong> — strategy, ads, and creative that convert
+            without feeling corporate beige.
           </p>
 
           <div class="hero-actions">
-            <a class="btn-primary" href="mailto:sebastian@shakirabacon.com?subject=Let%E2%80%99s%20talk%20about%20my%20marketing">
+            <a class="btn-primary" href="mailto:business@shakirabacon.com?subject=Let%E2%80%99s%20talk%20about%20my%20marketing">
               <span class="icon">🔥</span>
               <span>Request a consultation</span>
-            </a>
-
-            <!-- NEW PAY BUTTON -->
-            <a class="btn-outline pay-invoice" href="https://shakirabacon.com/pay">
-              <span class="icon">💳</span>
-              <span>Pay Your Invoice</span>
             </a>
 
             <a class="btn-outline" href="#contact">
@@ -732,7 +767,7 @@
           </div>
 
           <p class="hero-note">
-            <strong>Currently:</strong> building core case studies, over-analysing your CTR,
+            <strong>Currently:</strong> building spicy case studies, over-analysing your CTR,
             and asking “but what if this was actually fun?” in every meeting.
           </p>
         </div>
@@ -743,7 +778,7 @@
               <div class="hero-card-title">
                 <span>Campaign Snapshot · v0.1</span>
               </div>
-              <span class="hero-chip">Rainbow Performance Mode</span>
+              <span class="hero-chip">Bacon Mode: ON</span>
             </div>
 
             <div class="hero-metrics">
@@ -785,9 +820,8 @@
             <h2 class="section-title">What’s on the Shakira Bacon menu?</h2>
           </div>
           <p class="section-description">
-            We’re rolling out offers in stages. For now, think
-            <strong>smart strategy, spicy performance, and creative that feels human</strong>,
-            not like it was generated by a sad dashboard.
+            We’re rolling out offers in stages. For now, think <strong>smart strategy</strong>,
+            <strong>spicy performance</strong>, and creative that feels human — not like a sad dashboard.
           </p>
         </div>
 
@@ -805,8 +839,8 @@
             <div class="card-label">02 · Performance</div>
             <h3 class="card-title">Paid media with feelings</h3>
             <p class="card-body">
-              Meta, TikTok, Google, LinkedIn – planned, tested, and iterated until the dashboards
-              start flirting with you. No “set and forget”, only “set and obsess”.
+              Meta, TikTok, Google, LinkedIn — planned, tested, and iterated until the dashboards
+              start flirting with you. No “set and forget”. Only “set and obsess”.
             </p>
           </article>
 
@@ -829,8 +863,7 @@
             <h2 class="section-title">How we work (the bacon protocol)</h2>
           </div>
           <p class="section-description">
-            Underneath the jokes: a suspiciously rigorous process. Data, creative, and communication
-            all get equal custody.
+            Underneath the jokes: a suspiciously rigorous process. Data, creative, and communication all get equal custody.
           </p>
         </div>
 
@@ -839,8 +872,8 @@
             <div class="card-label">Step 1</div>
             <h3 class="card-title">Audit & diagnosis</h3>
             <p class="card-body">
-              We dissect your current marketing like a forensic scientist with a ring light:
-              channels, funnels, tracking, messaging, and the vibes.
+              We dissect your marketing like a forensic scientist with a ring light: channels, funnels,
+              tracking, messaging, and the vibes.
             </p>
           </article>
 
@@ -857,7 +890,7 @@
             <div class="card-label">Step 3</div>
             <h3 class="card-title">Execution & iteration</h3>
             <p class="card-body">
-              We launch, learn, and iterate quickly. Transparent reporting, weekly check-ins,
+              We launch, learn, and iterate fast. Transparent reporting, weekly check-ins,
               and zero gate-keeping on what’s actually working.
             </p>
           </article>
@@ -872,8 +905,8 @@
             <h2 class="section-title">Ready for your marketing glow-up?</h2>
           </div>
           <p class="section-description">
-            No 37-field form. Just an email, some context, and we’ll come back with
-            sensible next steps and probably one unreasonably bold idea.
+            No 37-field form. Just an email, some context, and we’ll come back with sensible next steps
+            and probably one unreasonably bold idea.
           </p>
         </div>
 
@@ -881,10 +914,10 @@
           <div class="contact-highlight">
             <h3>Tell us what you’re trying to fix, launch, or resurrect.</h3>
             <p>
-              New brand, plateaued growth, broken tracking, or general “our ads feel like a
-              beige PowerPoint”? We love a mess with potential.
+              New brand, plateaued growth, broken tracking, or general “our ads feel like a beige PowerPoint”?
+              We love a mess with potential.
             </p>
-            <a class="contact-email" href="mailto:sebastian@shakirabacon.com?subject=Hi%20Shakira%20Bacon">
+            <a class="contact-email" href="mailto:business@shakirabacon.com?subject=Hi%20Shakira%20Bacon">
               <span class="icon">📮</span>
               <span>business@shakirabacon.com</span>
             </a>
@@ -907,9 +940,7 @@
               <span class="chip">Pick one (or more)</span>
             </div>
             <div class="fake-field">
-              <span class="value">
-                ▢ Our ads don’t convert · ▢ No clear strategy · ▢ Launching something new · ▢ Tracking is chaos
-              </span>
+              <span class="value">▢ Our ads don’t convert · ▢ No clear strategy · ▢ Launching something new · ▢ Tracking is chaos</span>
             </div>
             <div class="fake-field">
               <span class="label">Approx. monthly ad budget</span>
@@ -921,7 +952,7 @@
             </div>
             <p class="contact-hint">
               Paste this into your email to
-              <a href="mailto:sebastian@shakirabacon.com">business@shakirabacon.com</a>
+              <a href="mailto:business@shakirabacon.com">business@shakirabacon.com</a>
               and we’ll take it from there.
             </p>
           </div>
