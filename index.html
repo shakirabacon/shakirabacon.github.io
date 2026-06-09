@@ -2,978 +2,313 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Shakira Bacon – Rainbow-Powered Digital Marketing</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Shakira Bacon — Part of Sebastian's Portfolio</title>
+  <meta http-equiv="refresh" content="7;url=https://orbiscapgroup.com" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     :root {
-      --max-width: 1120px;
-
-      --bg0:#070a12;
-      --bg1:#0b1220;
-
-      --text:#e5e7eb;
-      --muted:#a1a1aa;
-      --soft:#cbd5f5;
-
-      --border:rgba(255,255,255,.14);
-      --shadow:0 24px 80px rgba(0,0,0,.45);
-      --shadow-soft:0 22px 60px rgba(15, 23, 42, 0.22);
-
-      --radius-xl: 2rem;
-
-      --grad: linear-gradient(135deg, #f97316, #ec4899, #6366f1);
-      --grad-2: linear-gradient(120deg, rgba(249,115,22,.22), rgba(236,72,153,.20), rgba(99,102,241,.18));
+      --ink:     #0d0d0d;
+      --paper:   #f7f4ef;
+      --gold:    #b89a5a;
+      --muted:   #8a8680;
+      --rule:    rgba(184,154,90,0.25);
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html, body { height: 100%; }
-
-    body {
-      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      color: var(--text);
-      background:
-        radial-gradient(1200px 700px at 10% 10%, rgba(236,72,153,.20), transparent 60%),
-        radial-gradient(1000px 700px at 85% 30%, rgba(99,102,241,.18), transparent 60%),
-        radial-gradient(900px 650px at 60% 90%, rgba(34,197,94,.12), transparent 60%),
-        radial-gradient(900px 600px at 30% 75%, rgba(250,204,21,.12), transparent 60%),
-        linear-gradient(180deg, var(--bg0), var(--bg1));
-      min-height: 100vh;
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
+    html, body {
+      height: 100%;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      letter-spacing: 0.01em;
+      overflow: hidden;
     }
 
-    .orb {
+    /* ── Animated grid overlay ── */
+    body::before {
+      content: '';
       position: fixed;
-      width: 520px;
-      height: 520px;
-      filter: blur(140px);
-      opacity: 0.35;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--rule) 1px, transparent 1px),
+        linear-gradient(90deg, var(--rule) 1px, transparent 1px);
+      background-size: 80px 80px;
+      opacity: 0;
+      animation: gridIn 1.2s ease forwards 0.3s;
       pointer-events: none;
-      z-index: -2;
-    }
-    .orb.one { top: -120px; left: -80px; background: #ff4d8a; }
-    .orb.two { bottom: -160px; right: -80px; background: #38bdf8; }
-    .orb.three { top: 35%; left: 55%; background: #f97316; opacity: .18; }
-
-    .bgNoise{
-      position:fixed; inset:0;
-      pointer-events:none;
-      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.16'/%3E%3C/svg%3E");
-      mix-blend-mode:overlay;
-      opacity:.20;
-      z-index:-1;
+      z-index: 0;
     }
 
-    .page {
-      min-height: 100vh;
-      display: flex;
-      align-items: stretch;
-      justify-content: center;
-      padding: 2.6rem 1.25rem;
+    @keyframes gridIn { to { opacity: 1; } }
+
+    /* ── Layout ── */
+    .stage {
+      position: relative;
+      z-index: 1;
+      height: 100vh;
+      display: grid;
+      grid-template-rows: 1fr auto;
+      padding: 48px 56px;
     }
 
-    .shell {
-      width: 100%;
-      max-width: var(--max-width);
-      margin: 0 auto;
-      background:
-        radial-gradient(circle at top left, rgba(255,255,255,0.18), transparent 55%),
-        radial-gradient(circle at bottom right, rgba(255,255,255,0.10), transparent 55%),
-        rgba(15,23,42,0.92);
-      border-radius: var(--radius-xl);
-      border: 1px solid rgba(148,163,184,0.35);
-      box-shadow: var(--shadow-soft);
-      padding: 1.9rem 1.9rem 2.3rem;
-      backdrop-filter: blur(20px);
+    /* ── Center card ── */
+    .center {
       display: flex;
       flex-direction: column;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .shell::before{
-      content:"";
-      position:absolute;
-      inset:-2px;
-      background:
-        radial-gradient(900px 260px at 18% 0%, rgba(236,72,153,.22), transparent 60%),
-        radial-gradient(900px 260px at 82% 8%, rgba(99,102,241,.18), transparent 62%),
-        radial-gradient(900px 260px at 60% 110%, rgba(34,197,94,.12), transparent 65%);
-      filter: blur(10px);
-      opacity: .8;
-      pointer-events:none;
-    }
-    .shell > * { position: relative; z-index: 1; }
-
-    a { color: inherit; text-decoration: none; }
-
-    header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1.5rem;
-      margin-bottom: 2.2rem;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 1.1rem;
-      min-width: 0;
-    }
-
-    .brand-logo {
-      width: 76px;
-      height: 76px;
-      padding: 9px;
-      border-radius: 1.55rem;
-      background:
-        conic-gradient(from 160deg,
-          #f97316,
-          #ec4899,
-          #6366f1,
-          #22c55e,
-          #eab308,
-          #f97316);
-      display: flex;
-      align-items: center;
       justify-content: center;
-      box-shadow: 0 18px 55px rgba(0,0,0,0.38);
-      flex: 0 0 auto;
+      align-items: flex-start;
+      gap: 0;
+      opacity: 0;
+      transform: translateY(18px);
+      animation: rise 0.9s cubic-bezier(.22,.68,0,1.2) forwards 0.5s;
     }
 
-    .brand-logo-inner {
-      width: 100%;
-      height: 100%;
-      border-radius: 1.25rem;
-      background: #f9fafb;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
+    @keyframes rise {
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    .brand-logo img { max-width: 90%; max-height: 90%; display: block; }
-
-    .brand-text { display: flex; flex-direction: column; gap: 0.2rem; min-width: 0; }
-
-    .brand-name {
-      font-size: 1.4rem;
-      font-weight: 800;
-      letter-spacing: 0.18em;
+    .eyebrow {
+      font-size: 10px;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: #f9fafb;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      color: var(--gold);
+      margin-bottom: 20px;
     }
 
-    .brand-sub {
-      font-size: 0.78rem;
-      letter-spacing: 0.20em;
+    .wordmark {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(52px, 8vw, 96px);
+      line-height: 1;
+      color: var(--ink);
+      letter-spacing: -0.02em;
+    }
+
+    .wordmark span {
+      color: var(--gold);
+    }
+
+    .divider {
+      width: 48px;
+      height: 1px;
+      background: var(--gold);
+      margin: 32px 0;
+      transform-origin: left;
+      transform: scaleX(0);
+      animation: expandLine 0.6s ease forwards 1.1s;
+    }
+
+    @keyframes expandLine { to { transform: scaleX(1); } }
+
+    .tagline {
+      font-size: 13px;
+      line-height: 1.7;
+      color: var(--muted);
+      max-width: 360px;
+    }
+
+    .tagline strong {
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    /* ── Progress bar ── */
+    .progress-wrap {
+      margin-top: 44px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards 1.4s;
+    }
+
+    @keyframes fadeUp { to { opacity: 1; } }
+
+    .progress-label {
+      font-size: 10px;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--muted);
     }
 
-    .header-right {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-    }
-
-    .status-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.42rem 0.85rem;
-      border-radius: 999px;
-      background: rgba(0,0,0,0.22);
-      border: 1px solid rgba(255,255,255,0.18);
-      color: rgba(229,231,235,0.92);
-      font-size: 0.72rem;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      backdrop-filter: blur(16px);
-    }
-
-    .status-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      background: #22c55e;
-      box-shadow: 0 0 0 6px rgba(34,197,94,0.22);
-    }
-
-    .btn-outline {
-      padding: 0.5rem 1.05rem;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.20);
-      background: rgba(0,0,0,0.20);
-      color: rgba(229,231,235,0.95);
-      font-size: 0.82rem;
-      font-weight: 600;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      cursor: pointer;
-      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease, filter .18s ease;
-      backdrop-filter: blur(16px);
-      white-space: nowrap;
-    }
-    .btn-outline:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 14px 34px rgba(0,0,0,.45);
-      border-color: rgba(249, 115, 22, 0.85);
-      filter: brightness(1.02);
-    }
-    .btn-outline span.icon { font-size: 1rem; transform: translateY(1px); }
-
-    /* Utility button: slightly quieter than primary-looking buttons */
-    .btn-outline.utility{
-      opacity: .92;
-    }
-    .btn-outline.utility:hover{
-      opacity: 1;
-    }
-
-    .hero {
-      display: grid;
-      grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr);
-      gap: 2.4rem;
-      align-items: center;
-      margin-bottom: 2.9rem;
-    }
-
-    .hero-kicker {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.55rem;
-      padding: 0.28rem 0.85rem;
-      border-radius: 999px;
-      background: rgba(0,0,0,0.22);
-      border: 1px solid rgba(255,255,255,0.18);
-      color: rgba(229,231,235,0.92);
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.20em;
-      margin-bottom: 1.1rem;
-      backdrop-filter: blur(16px);
-    }
-    .hero-kicker span.tag{
-      padding: 0.18rem 0.62rem;
-      border-radius: 999px;
-      background: var(--grad);
-      color: #0b1220;
-      font-weight: 800;
-      letter-spacing: 0.22em;
-    }
-
-    h1.hero-title {
-      font-size: clamp(2.35rem, 3.2vw + 1.2rem, 3.55rem);
-      line-height: 1.05;
-      letter-spacing: -0.045em;
-      margin-bottom: 0.9rem;
-      color: #f9fafb;
-    }
-    .hero-title span {
-      background: linear-gradient(120deg, #f97316, #ec4899, #6366f1, #22c55e);
-      -webkit-background-clip: text;
-      color: transparent;
-    }
-
-    .hero-subtitle {
-      font-size: 1.02rem;
-      max-width: 36rem;
-      color: rgba(203,213,245,0.95);
-      margin-bottom: 1.7rem;
-      line-height: 1.6;
-    }
-    .hero-subtitle strong { color: #e5e7eb; font-weight: 700; }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.85rem;
-      margin-bottom: 1.1rem;
-      align-items: center;
-    }
-
-    .btn-primary {
-      border-radius: 999px;
-      padding: 0.82rem 1.55rem;
-      border: none;
-      background: var(--grad);
-      color: #0b1220;
-      font-size: 0.95rem;
-      font-weight: 800;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.55rem;
-      cursor: pointer;
-      box-shadow: 0 18px 55px rgba(0,0,0,.50);
-      transition: transform 0.2s ease, box-shadow 0.2s ease, filter .2s ease;
-      white-space: nowrap;
-    }
-    .btn-primary:hover {
-      transform: translateY(-2px) scale(1.01);
-      box-shadow: 0 26px 70px rgba(0,0,0,.55);
-      filter: brightness(1.03);
-    }
-    .btn-primary span.icon { font-size: 1.15rem; transform: translateY(1px); }
-
-    .hero-note {
-      font-size: 0.82rem;
-      color: rgba(161,161,170,0.98);
-      line-height: 1.55;
-    }
-    .hero-note strong { color: rgba(229,231,235,0.95); }
-
-    .hero-card {
-      background: radial-gradient(circle at top left, rgba(248,250,252,0.16), rgba(0,0,0,0.22));
-      border-radius: var(--radius-xl);
-      padding: 1.55rem 1.55rem 1.45rem;
-      border: 1px solid rgba(255,255,255,0.18);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(18px);
-      color: rgba(229,231,235,0.95);
+    .bar-track {
+      width: 240px;
+      height: 1px;
+      background: var(--rule);
       position: relative;
-      overflow: hidden;
+      overflow: visible;
     }
-    .hero-card::after{
-      content:"";
-      position:absolute;
-      inset:-2px;
-      background: var(--grad-2);
-      filter: blur(16px);
-      opacity: .55;
-      pointer-events:none;
-    }
-    .hero-card > * { position: relative; z-index: 1; }
 
-    .hero-card-header {
+    .bar-fill {
+      position: absolute;
+      top: 0; left: 0;
+      height: 100%;
+      background: var(--gold);
+      width: 0%;
+      animation: fill 6s linear forwards 1.5s;
+    }
+
+    .bar-dot {
+      position: absolute;
+      top: 50%;
+      left: 0%;
+      transform: translate(-50%, -50%);
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--gold);
+      animation: dotMove 6s linear forwards 1.5s;
+    }
+
+    @keyframes fill    { to { width: 100%; } }
+    @keyframes dotMove { to { left: 100%; } }
+
+    /* ── Footer ── */
+    .footer {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 1rem;
-      gap: 1rem;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards 1.6s;
     }
 
-    .hero-card-title {
-      font-size: 0.92rem;
-      font-weight: 800;
+    .footer-left {
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .footer-right {
       display: flex;
       align-items: center;
-      gap: 0.55rem;
-      letter-spacing: -0.01em;
-    }
-
-    .hero-chip {
-      font-size: 0.7rem;
-      padding: 0.22rem 0.65rem;
-      border-radius: 999px;
-      background: rgba(0,0,0,0.22);
-      border: 1px solid rgba(255,255,255,0.20);
+      gap: 6px;
+      font-size: 10px;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      letter-spacing: 0.18em;
-      color: rgba(203,213,245,0.95);
-      white-space: nowrap;
+      color: var(--muted);
     }
 
-    .hero-metrics {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 0.85rem;
-      margin-bottom: 1.05rem;
+    .orbis-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+      display: inline-block;
     }
 
-    .metric {
-      padding: 0.95rem 0.95rem;
-      border-radius: 1.05rem;
-      background: rgba(0,0,0,0.22);
-      border: 1px solid rgba(255,255,255,0.16);
+    /* ── Corner accent ── */
+    .corner-tl, .corner-br {
+      position: fixed;
+      width: 48px;
+      height: 48px;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards 0.8s;
     }
 
-    .metric-label {
-      font-size: 0.72rem;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      color: rgba(161,161,170,0.95);
-      margin-bottom: 0.3rem;
+    .corner-tl {
+      top: 24px; left: 24px;
+      border-top: 1px solid var(--gold);
+      border-left: 1px solid var(--gold);
     }
 
-    .metric-value {
-      font-size: 1.3rem;
-      font-weight: 900;
-      letter-spacing: -0.03em;
-      margin-bottom: 0.15rem;
+    .corner-br {
+      bottom: 24px; right: 24px;
+      border-bottom: 1px solid var(--gold);
+      border-right: 1px solid var(--gold);
+      animation-delay: 1s;
     }
 
-    .metric-footnote {
-      font-size: 0.72rem;
-      color: rgba(161,161,170,0.95);
-      line-height: 1.45;
-    }
-
-    .hero-list {
-      font-size: 0.82rem;
-      color: rgba(203,213,245,0.95);
-      list-style: none;
-      display: grid;
-      gap: 0.45rem;
-      margin-top: 0.25rem;
-    }
-
-    .hero-list li {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.55rem;
-      line-height: 1.5;
-    }
-
-    .hero-list span.badge {
-      width: 20px;
-      height: 20px;
-      border-radius: 999px;
-      background: var(--grad);
-      font-size: 0.62rem;
-      font-weight: 900;
-      color: #0b1220;
+    /* ── Parked badge ── */
+    .parked-badge {
       display: inline-flex;
       align-items: center;
-      justify-content: center;
-      flex: 0 0 auto;
-      transform: translateY(1px);
-    }
-
-    .section { margin-bottom: 2.75rem; }
-
-    .section-header {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 1.5rem;
-      margin-bottom: 1.45rem;
-      flex-wrap: wrap;
-    }
-
-    .section-kicker {
-      font-size: 0.75rem;
+      gap: 8px;
+      margin-top: 28px;
+      padding: 7px 14px;
+      border: 1px solid var(--rule);
+      font-size: 10px;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      letter-spacing: 0.22em;
-      color: rgba(161,161,170,0.98);
-      margin-bottom: 0.2rem;
+      color: var(--muted);
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards 1.3s;
     }
 
-    .section-title {
-      font-size: 1.36rem;
-      font-weight: 900;
-      letter-spacing: -0.02em;
-      color: #f9fafb;
+    .badge-dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--gold);
+      animation: pulse 2s infinite;
     }
 
-    .section-description {
-      font-size: 0.9rem;
-      color: rgba(161,161,170,0.98);
-      max-width: 30rem;
-      line-height: 1.55;
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0.3; }
     }
 
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1.35rem;
+    @media (max-width: 560px) {
+      .stage { padding: 32px 28px; }
+      .wordmark { font-size: 48px; }
+      .bar-track { width: 180px; }
     }
 
-    .card {
-      background: radial-gradient(circle at top left, rgba(248,250,252,0.12), rgba(0,0,0,0.22));
-      border-radius: 1.45rem;
-      padding: 1.25rem 1.2rem 1.3rem;
-      border: 1px solid rgba(255,255,255,0.16);
-      box-shadow: 0 18px 45px rgba(0,0,0,0.40);
-      color: rgba(229,231,235,0.95);
-      position: relative;
-      overflow: hidden;
-    }
-    .card::before{
-      content:"";
-      position:absolute;
-      inset:-2px;
-      background:
-        radial-gradient(500px 200px at 0% 0%, rgba(249,115,22,.18), transparent 60%),
-        radial-gradient(500px 200px at 100% 0%, rgba(236,72,153,.16), transparent 60%),
-        radial-gradient(500px 200px at 40% 120%, rgba(99,102,241,.14), transparent 60%);
-      filter: blur(14px);
-      opacity: .7;
-      pointer-events:none;
-    }
-    .card > * { position: relative; z-index: 1; }
-
-    .card-label {
-      font-size: 0.72rem;
-      text-transform: uppercase;
-      letter-spacing: 0.20em;
-      color: rgba(161,161,170,0.95);
-      margin-bottom: 0.35rem;
-    }
-
-    .card-title {
-      font-size: 1.05rem;
-      font-weight: 900;
-      margin-bottom: 0.5rem;
-      letter-spacing: -0.01em;
-    }
-
-    .card-body {
-      font-size: 0.87rem;
-      color: rgba(203,213,245,0.95);
-      line-height: 1.6;
-    }
-
-    .contact-layout {
-      display: grid;
-      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
-      gap: 2rem;
-    }
-
-    .contact-highlight {
-      background: var(--grad);
-      border-radius: 1.6rem;
-      padding: 1.6rem 1.6rem 1.35rem;
-      box-shadow: 0 26px 70px rgba(0,0,0,.55);
-      color: #0b1220;
-      position: relative;
-      overflow: hidden;
-    }
-    .contact-highlight::before{
-      content:"";
-      position:absolute;
-      inset:-2px;
-      background:
-        radial-gradient(650px 240px at 15% 0%, rgba(255,255,255,.25), transparent 60%),
-        radial-gradient(650px 240px at 85% 10%, rgba(255,255,255,.18), transparent 62%);
-      filter: blur(12px);
-      opacity:.7;
-      pointer-events:none;
-    }
-    .contact-highlight > * { position: relative; z-index: 1; }
-
-    .contact-highlight h3 {
-      font-size: 1.18rem;
-      font-weight: 900;
-      margin-bottom: 0.5rem;
-      letter-spacing: -0.02em;
-    }
-
-    .contact-highlight p {
-      font-size: 0.92rem;
-      margin-bottom: 0.85rem;
-      color: rgba(2,6,23,0.92);
-      line-height: 1.6;
-    }
-
-    .contact-email {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.55rem;
-      padding: 0.6rem 0.95rem;
-      border-radius: 999px;
-      background: rgba(0,0,0,0.22);
-      color: #f9fafb;
-      font-size: 0.84rem;
-      font-weight: 800;
-      margin-bottom: 0.85rem;
-      border: 1px solid rgba(255,255,255,0.18);
-      box-shadow: 0 14px 34px rgba(0,0,0,.35);
-      backdrop-filter: blur(14px);
-    }
-    .contact-email span.icon { font-size: 1rem; }
-
-    .contact-footnote {
-      font-size: 0.8rem;
-      color: rgba(2,6,23,0.88);
-      opacity: 0.95;
-      line-height: 1.55;
-    }
-
-    .contact-form {
-      border-radius: 1.6rem;
-      padding: 1.45rem 1.45rem 1.25rem;
-      border: 1px solid rgba(255,255,255,0.16);
-      background: rgba(0,0,0,0.20);
-      box-shadow: 0 18px 45px rgba(0,0,0,.35);
-      color: rgba(229,231,235,0.95);
-      backdrop-filter: blur(18px);
-    }
-
-    .contact-form p {
-      margin-bottom: 0.85rem;
-      color: rgba(203,213,245,0.95);
-      line-height: 1.6;
-      font-size: 0.88rem;
-    }
-
-    .fake-field {
-      padding: 0.7rem 0.85rem;
-      border-radius: 1rem;
-      border: 1px solid rgba(255,255,255,0.16);
-      background: rgba(0,0,0,0.22);
-      font-size: 0.82rem;
-      color: rgba(229,231,235,0.95);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 0.6rem;
-      margin-bottom: 0.55rem;
-    }
-
-    .fake-field span.label { color: rgba(161,161,170,0.95); }
-    .fake-field span.value { color: rgba(229,231,235,0.95); }
-
-    .fake-field span.chip {
-      padding: 0.18rem 0.6rem;
-      border-radius: 999px;
-      background: rgba(0,0,0,0.22);
-      border: 1px solid rgba(255,255,255,0.18);
-      font-size: 0.72rem;
-      color: rgba(229,231,235,0.95);
-      white-space: nowrap;
-    }
-
-    .contact-hint {
-      font-size: 0.78rem;
-      color: rgba(161,161,170,0.98);
-      margin-top: 0.25rem;
-      line-height: 1.55;
-    }
-    .contact-hint a{
-      color: rgba(229,231,235,0.95);
-      border-bottom: 1px dashed rgba(229,231,235,0.55);
-    }
-    .contact-hint a:hover{ border-bottom-color: rgba(229,231,235,0.9); }
-
-    footer {
-      margin-top: 1.55rem;
-      padding-top: 1.35rem;
-      border-top: 1px solid rgba(148,163,184,0.35);
-      font-size: 0.78rem;
-      color: rgba(161,161,170,0.98);
-      line-height: 1.6;
-      text-align: center;
-    }
-
-    .footer-main { color: rgba(229,231,235,0.95); margin-bottom: 0.35rem; }
-    .footer-main strong { font-weight: 800; }
-    .footer-address { margin-bottom: 0.25rem; }
-
-    .footer-meta a{
-      color: rgba(229,231,235,0.95);
-      text-decoration: none;
-      border-bottom: 1px dashed rgba(229,231,235,0.55);
-    }
-    .footer-meta a:hover{ border-bottom-color: rgba(229,231,235,0.9); }
-
-    @media (max-width: 880px) {
-      .shell { padding: 1.55rem 1.25rem 1.85rem; }
-      header { flex-direction: column; align-items: flex-start; }
-      .header-right { justify-content: flex-start; }
-      .hero { grid-template-columns: minmax(0,1fr); }
-      .hero-right { order: -1; }
-      .grid-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .contact-layout { grid-template-columns: minmax(0,1fr); }
-    }
-
-    @media (max-width: 640px) {
-      .grid-3 { grid-template-columns: minmax(0,1fr); }
-      h1.hero-title { font-size: 2.2rem; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0s !important; }
     }
   </style>
 </head>
-
 <body>
-  <div class="orb one"></div>
-  <div class="orb two"></div>
-  <div class="orb three"></div>
-  <div class="bgNoise"></div>
 
-  <div class="page">
-    <div class="shell">
-      <!-- HEADER -->
-      <header>
-        <div class="brand">
-          <div class="brand-logo">
-            <div class="brand-logo-inner">
-              <img src="images/shakira-bacon-logo.png" alt="Shakira Bacon logo" />
-            </div>
-          </div>
-          <div class="brand-text">
-            <div class="brand-name">Shakira Bacon</div>
-            <div class="brand-sub">Rainbow-Powered Digital Marketing</div>
-          </div>
+  <div class="corner-tl"></div>
+  <div class="corner-br"></div>
+
+  <div class="stage">
+    <div class="center">
+      <p class="eyebrow">Sebastian's Portfolio &nbsp;·&nbsp; Orbis Capital</p>
+
+      <h1 class="wordmark">Shakira<br><span>Bacon</span></h1>
+
+      <div class="divider"></div>
+
+      <p class="tagline">
+        This domain is <strong>parked for future projects</strong> and is part of
+        <strong>Sebastian's Portfolio</strong> — a collection of ventures
+        owned and operated by <strong>Orbis Capital Group</strong>.
+      </p>
+
+      <div class="parked-badge">
+        <span class="badge-dot"></span>
+        Domain parked &nbsp;·&nbsp; Future projects incoming
+      </div>
+
+      <div class="progress-wrap">
+        <p class="progress-label">Redirecting to Orbis Capital Group</p>
+        <div class="bar-track">
+          <div class="bar-fill"></div>
+          <div class="bar-dot"></div>
         </div>
-
-        <div class="header-right">
-          <div class="status-pill">
-            <span class="status-dot"></span>
-            <span>Founding client spots open</span>
-          </div>
-
-          <!-- MOVED HERE: Pay invoice as a utility link -->
-          <a class="btn-outline utility" href="https://shakirabacon.com/pay" title="For existing clients">
-            <span class="icon">🧾</span>
-            <span>Pay invoice</span>
-          </a>
-
-          <a class="btn-outline" href="mailto:business@shakirabacon.com">
-            <span class="icon">✉️</span>
-            <span>business@shakirabacon.com</span>
-          </a>
-        </div>
-      </header>
-
-      <!-- HERO -->
-      <section class="hero">
-        <div class="hero-left">
-          <div class="hero-kicker">
-            <span class="tag">Beta Studio</span>
-            <span>Professional-ish. Deliciously ridiculous.</span>
-          </div>
-
-          <h1 class="hero-title">
-            Digital marketing that’s<br />
-            <span>crispy, loud & actually effective.</span>
-          </h1>
-
-          <p class="hero-subtitle">
-            Shakira Bacon is a boutique studio for brands that want <strong>grown-up performance</strong>
-            with <strong>main-character energy</strong> — strategy, ads, and creative that convert
-            without feeling corporate beige.
-          </p>
-
-          <div class="hero-actions">
-            <a class="btn-primary" href="mailto:business@shakirabacon.com?subject=Let%E2%80%99s%20talk%20about%20my%20marketing">
-              <span class="icon">🔥</span>
-              <span>Request a consultation</span>
-            </a>
-
-            <a class="btn-outline" href="#contact">
-              <span class="icon">📈</span>
-              <span>Send your biggest marketing mess</span>
-            </a>
-          </div>
-
-          <p class="hero-note">
-            <strong>Currently:</strong> building spicy case studies, over-analysing your CTR,
-            and asking “but what if this was actually fun?” in every meeting.
-          </p>
-        </div>
-
-        <div class="hero-right">
-          <div class="hero-card">
-            <div class="hero-card-header">
-              <div class="hero-card-title">
-                <span>Campaign Snapshot · v0.1</span>
-              </div>
-              <span class="hero-chip">Bacon Mode: ON</span>
-            </div>
-
-            <div class="hero-metrics">
-              <div class="metric">
-                <div class="metric-label">Click-through glow-up</div>
-                <div class="metric-value">+143%</div>
-                <div class="metric-footnote">From “meh” to “wait, what?”</div>
-              </div>
-              <div class="metric">
-                <div class="metric-label">Ad spend sanity</div>
-                <div class="metric-value">On track</div>
-                <div class="metric-footnote">We spiral over the numbers so you don’t.</div>
-              </div>
-            </div>
-
-            <ul class="hero-list">
-              <li>
-                <span class="badge">SB</span>
-                <span>Full-funnel strategy with the energy of a project-managed group chat.</span>
-              </li>
-              <li>
-                <span class="badge">AB</span>
-                <span>A/B tests that answer “is this working or are we just vibing?”</span>
-              </li>
-              <li>
-                <span class="badge">UGC</span>
-                <span>Native-feeling content that’s suspiciously good at printing revenue.</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <!-- SERVICES -->
-      <section class="section" id="services">
-        <div class="section-header">
-          <div>
-            <div class="section-kicker">Services</div>
-            <h2 class="section-title">What’s on the Shakira Bacon menu?</h2>
-          </div>
-          <p class="section-description">
-            We’re rolling out offers in stages. For now, think <strong>smart strategy</strong>,
-            <strong>spicy performance</strong>, and creative that feels human — not like a sad dashboard.
-          </p>
-        </div>
-
-        <div class="grid-3">
-          <article class="card">
-            <div class="card-label">01 · Strategy</div>
-            <h3 class="card-title">Full-funnel digital strategy</h3>
-            <p class="card-body">
-              Audits, roadmaps, and channel mixes that don’t read like a textbook.
-              We zoom out, zoom in, and delete anything that doesn’t push revenue or sanity forward.
-            </p>
-          </article>
-
-          <article class="card">
-            <div class="card-label">02 · Performance</div>
-            <h3 class="card-title">Paid media with feelings</h3>
-            <p class="card-body">
-              Meta, TikTok, Google, LinkedIn — planned, tested, and iterated until the dashboards
-              start flirting with you. No “set and forget”. Only “set and obsess”.
-            </p>
-          </article>
-
-          <article class="card">
-            <div class="card-label">03 · Creative</div>
-            <h3 class="card-title">Creative & UGC direction</h3>
-            <p class="card-body">
-              Hooks, scripts, and concepts that look native, scroll-stopping and a little too
-              effective for something this unserious.
-            </p>
-          </article>
-        </div>
-      </section>
-
-      <!-- PROCESS -->
-      <section class="section">
-        <div class="section-header">
-          <div>
-            <div class="section-kicker">Process</div>
-            <h2 class="section-title">How we work (the bacon protocol)</h2>
-          </div>
-          <p class="section-description">
-            Underneath the jokes: a suspiciously rigorous process. Data, creative, and communication all get equal custody.
-          </p>
-        </div>
-
-        <div class="grid-3">
-          <article class="card">
-            <div class="card-label">Step 1</div>
-            <h3 class="card-title">Audit & diagnosis</h3>
-            <p class="card-body">
-              We dissect your marketing like a forensic scientist with a ring light: channels, funnels,
-              tracking, messaging, and the vibes.
-            </p>
-          </article>
-
-          <article class="card">
-            <div class="card-label">Step 2</div>
-            <h3 class="card-title">Strategy & test plan</h3>
-            <p class="card-body">
-              A focused test plan, not a 60-slide deck. Clear hypotheses, clear metrics, and
-              plenty of room for chaotic brilliance.
-            </p>
-          </article>
-
-          <article class="card">
-            <div class="card-label">Step 3</div>
-            <h3 class="card-title">Execution & iteration</h3>
-            <p class="card-body">
-              We launch, learn, and iterate fast. Transparent reporting, weekly check-ins,
-              and zero gate-keeping on what’s actually working.
-            </p>
-          </article>
-        </div>
-      </section>
-
-      <!-- CONTACT -->
-      <section class="section" id="contact">
-        <div class="section-header">
-          <div>
-            <div class="section-kicker">Contact</div>
-            <h2 class="section-title">Ready for your marketing glow-up?</h2>
-          </div>
-          <p class="section-description">
-            No 37-field form. Just an email, some context, and we’ll come back with sensible next steps
-            and probably one unreasonably bold idea.
-          </p>
-        </div>
-
-        <div class="contact-layout">
-          <div class="contact-highlight">
-            <h3>Tell us what you’re trying to fix, launch, or resurrect.</h3>
-            <p>
-              New brand, plateaued growth, broken tracking, or general “our ads feel like a beige PowerPoint”?
-              We love a mess with potential.
-            </p>
-            <a class="contact-email" href="mailto:business@shakirabacon.com?subject=Hi%20Shakira%20Bacon">
-              <span class="icon">📮</span>
-              <span>business@shakirabacon.com</span>
-            </a>
-            <div class="contact-footnote">
-              Include your website, main channels, and approximate monthly ad spend if you already run campaigns.
-              We’ll reply with availability and options.
-            </div>
-          </div>
-
-          <div class="contact-form">
-            <p>
-              Prefer structured chaos? Copy this into your email and fill it in. We respect an organised overshare.
-            </p>
-            <div class="fake-field">
-              <span class="label">Brand / Company</span>
-              <span class="value">Acme Corp but make it hot</span>
-            </div>
-            <div class="fake-field">
-              <span class="label">Biggest marketing headache</span>
-              <span class="chip">Pick one (or more)</span>
-            </div>
-            <div class="fake-field">
-              <span class="value">▢ Our ads don’t convert · ▢ No clear strategy · ▢ Launching something new · ▢ Tracking is chaos</span>
-            </div>
-            <div class="fake-field">
-              <span class="label">Approx. monthly ad budget</span>
-              <span class="value">£ — happy to discuss</span>
-            </div>
-            <div class="fake-field">
-              <span class="label">Ideal timeline</span>
-              <span class="value">ASAP / This quarter / Just exploring</span>
-            </div>
-            <p class="contact-hint">
-              Paste this into your email to
-              <a href="mailto:business@shakirabacon.com">business@shakirabacon.com</a>
-              and we’ll take it from there.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <!-- FOOTER -->
-      <footer>
-        <div class="footer-main">
-          <strong>Shakira Bacon</strong> | Managed by Berma LLC dba NoGood
-        </div>
-        <div class="footer-address">
-          Ground Floor, 30 Churchill Pl, London E14 5RE, UK | Ground Floor, 6 Hanover Quay, Dublin D02 HP71, Ireland
-        </div>
-        <div class="footer-meta">
-          © 2026 Shakira Bacon. All rights reserved.
-          &nbsp;|&nbsp;
-          <a href="https://shakirabacon.com/terms" target="_blank" rel="noopener">Terms &amp; Conditions</a>
-        </div>
-      </footer>
+      </div>
     </div>
+
+    <footer class="footer">
+      <span class="footer-left">shakiabacon.com</span>
+      <span class="footer-right">
+        <span class="orbis-dot"></span>
+        orbiscapgroup.com
+      </span>
+    </footer>
   </div>
+
+  <script>
+    // Redirect after 7s (matches the bar animation)
+    setTimeout(() => {
+      window.location.href = 'https://orbiscapgroup.com';
+    }, 7000);
+  </script>
 </body>
 </html>
